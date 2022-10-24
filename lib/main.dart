@@ -1,5 +1,6 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -47,7 +48,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-final player = AudioPlayer();
+  final bgAudio = AudioPlayer();
+  final bgAudio1 = AudioPlayer();
+  final bgAudio2 = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
@@ -90,19 +93,24 @@ final player = AudioPlayer();
                     overlayColor: MaterialStateProperty.all(Colors.white,)
                 ),
                 onPressed: ()async{
+bgAudio.play(UrlSource("https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
+await Future.delayed(Duration(milliseconds: 400));
+  bgAudio1.play(UrlSource("https://catonknees.com/wp-content/uploads/2022/06/117.mp3"));
+await Future.delayed(Duration(milliseconds: 400));
+    bgAudio2.play(UrlSource("https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
 
-                  await player.setUrl("https://catonknees.com/wp-content/uploads/2022/05/2749.mp3");
-                  player.play();
-print("aa");
-                  Future.delayed(Duration(milliseconds: 500)).then((_) async {
-                    await player.setUrl("https://catonknees.com/wp-content/uploads/2022/06/117.mp3");
-                    player.play();
-                  });
-print("aa");
-                  Future.delayed(Duration(milliseconds: 2000)).then((_) async {
-                    await player.setUrl("https://catonknees.com/wp-content/uploads/2022/05/2749.mp3");
-                    player.play();
-                  });
+//                   await player.setUrl("https://catonknees.com/wp-content/uploads/2022/05/2749.mp3");
+//                   player.play();
+// print("aa");
+//                   Future.delayed(Duration(milliseconds: 500)).then((_) async {
+//                     await player.setUrl("https://catonknees.com/wp-content/uploads/2022/06/117.mp3");
+//                     player.play();
+//                   });
+// print("aa");
+//                   Future.delayed(Duration(milliseconds: 2000)).then((_) async {
+//                     await player.setUrl("https://catonknees.com/wp-content/uploads/2022/05/2749.mp3");
+//                     player.play();
+//                   });
 
 
                 },
