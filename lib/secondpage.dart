@@ -1,8 +1,7 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:dictionary/readData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:just_audio/just_audio.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -19,6 +18,15 @@ class SecondPage extends StatefulWidget {
 
 class _SecondPageState extends State<SecondPage> {
   final player = AudioPlayer();
+  final player1 = AudioPlayer();
+  final player2 = AudioPlayer();
+  final player3 = AudioPlayer();
+  final player4 = AudioPlayer();
+  final player5 = AudioPlayer();
+  final player6 = AudioPlayer();
+  final player7 = AudioPlayer();
+  final player8 = AudioPlayer();
+  final player9 = AudioPlayer();
   Color colorvolume = Colors.black;
   bool expanded1 = false;
 
@@ -48,7 +56,7 @@ class _SecondPageState extends State<SecondPage> {
               padding: const EdgeInsets.only(top:15.0),
               child: SizedBox(
                 width: MediaQuery.of(context).size.width*0.5,
-                height: MediaQuery.of(context).size.height *0.15,
+                height: MediaQuery.of(context).size.height *0.07,
                 child: ListView.builder(
                   itemCount: widget.dictionaryItem.chinese.length,
                   scrollDirection: Axis.horizontal,
@@ -59,9 +67,9 @@ class _SecondPageState extends State<SecondPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children:[
-                          Text(widget.dictionaryItem.chinese[index], style: TextStyle(fontSize: 40),),
-                          Text(widget.dictionaryItem.catOnknees.split(' ')[index]),
-                          Text(widget.dictionaryItem.yale.split(' ')[index]),
+                          FittedBox(child: Text(widget.dictionaryItem.chinese[index], style: TextStyle(fontSize: 37),)),
+                          // Text(widget.dictionaryItem.catOnknees.split(' ')[index]),
+                          // Text(widget.dictionaryItem.yale.split(' ')[index]),
 
                           ]
                       ),
@@ -70,9 +78,33 @@ class _SecondPageState extends State<SecondPage> {
                 ),
               ),
             ),
+            Container(
+              width: MediaQuery.of(context).size.width*0.5,
+              height: MediaQuery.of(context).size.height *0.05,
+              child: ListView.builder(
+                  itemCount: widget.dictionaryItem.catOnknees.split(' ').length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      width:  MediaQuery.of(context).size.width*0.5/widget.dictionaryItem.catOnknees.split(' ').length,
+                      alignment: Alignment.center,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children:[
+                            FittedBox(child: Text(widget.dictionaryItem.catOnknees.split(' ')[index])),
+                            
+                            FittedBox(child: Text(widget.dictionaryItem.yale.split(' ')[index])),
+
+                          ]
+                      ),
+                    );
+                  }
+              ),
+            ),
 
 
-        /// 単語共通の文章（スピーカーとか）
+
+            /// 単語共通の文章（スピーカーとか）
         SizedBox(
           child: Column(
             children:[
@@ -91,10 +123,65 @@ class _SecondPageState extends State<SecondPage> {
                         onPressed: ()async{
                           // if (voiceTimes==false) EasyLoading.show(status: "音声読み込み中");
                           setState((){colorvolume = Colors.grey;});
+                          player.play(UrlSource(
+                              widget.dictionaryItem.audio1));
 
-                          await player.setUrl(widget.dictionaryItem.note2);
-                          player.play();
+                          if (widget.dictionaryItem.audio2!=""&&widget.dictionaryItem.audio2!=null){
 
+                            await Future.delayed(const Duration(milliseconds: 800));
+                            player1.play(UrlSource(
+                                widget.dictionaryItem.audio2));
+                          }
+
+                          if (widget.dictionaryItem.audio3!=""&&widget.dictionaryItem.audio3!=null){
+                            print("2");
+                            await Future.delayed(const Duration(milliseconds: 800));
+                            player2.play(UrlSource(
+                                widget.dictionaryItem.audio3));
+                          }
+
+                          if (widget.dictionaryItem.audio4!=""&&widget.dictionaryItem.audio4!=null){
+                            print("3");
+                            await Future.delayed(const Duration(milliseconds: 800));
+                           player3.play(UrlSource(
+                                widget.dictionaryItem.audio4));
+                          }
+
+                          if (widget.dictionaryItem.audio5!=""&&widget.dictionaryItem.audio5!=null){
+                            print("4");
+                            await Future.delayed(const Duration(milliseconds: 800));
+                           player4.play(UrlSource(
+                                widget.dictionaryItem.audio5));
+                          }
+
+                          if (widget.dictionaryItem.audio6!=""&&widget.dictionaryItem.audio6!=null){
+                            print("5");
+                            await Future.delayed(const Duration(milliseconds: 800));
+                            player5.play(UrlSource(
+                                widget.dictionaryItem.audio6));
+                          }
+
+                          if (widget.dictionaryItem.audio7!=""&&widget.dictionaryItem.audio7!=null){
+                            print("6");
+                            await Future.delayed(const Duration(milliseconds: 800));
+                            player6.play(UrlSource(
+                                widget.dictionaryItem.audio7));
+                          }
+                          if (widget.dictionaryItem.audio8!=""&&widget.dictionaryItem.audio8!=null){
+                            await Future.delayed(const Duration(milliseconds: 800));
+                            player7.play(UrlSource(
+                                widget.dictionaryItem.audio8));
+                          }
+                          if (widget.dictionaryItem.audio9!=""&&widget.dictionaryItem.audio9!=null){
+                            await Future.delayed(const Duration(milliseconds: 800));
+                            player8.play(UrlSource(
+                                widget.dictionaryItem.audio9));
+                          }
+                          if (widget.dictionaryItem.audio10!=""&&widget.dictionaryItem.audio10!=null){
+                            await Future.delayed(const Duration(milliseconds: 800));
+                            player9.play(UrlSource(
+                                widget.dictionaryItem.audio10));
+                          }
                           setState((){colorvolume = Colors.black;});
                           // if (voiceTimes==false) EasyLoading.dismiss();
                           // if (voiceTimes==false) voiceTimes=true;
@@ -133,8 +220,7 @@ class _SecondPageState extends State<SecondPage> {
               children: [
 
                 ///ドロップダウン備考
-                if(widget.dictionaryItem.voiceData!= ""|| widget.dictionaryItem.voiceData!= ""||widget.dictionaryItem.chinese!= ""||widget.dictionaryItem.voiceData!= ""
-                ||widget.dictionaryItem.note2!= ""||widget.dictionaryItem.japanese!= ""||widget.dictionaryItem.yale!= ""||widget.dictionaryItem.chinese!= "")
+                if(widget.dictionaryItem.note1!= ""|| widget.dictionaryItem.note2!= ""||widget.dictionaryItem.yale!= "")
                   CustomBoard(
                   title:  Column(
               children: [
@@ -163,6 +249,33 @@ class _SecondPageState extends State<SecondPage> {
                     });
                   },
                 ),
+
+
+                /// どろっぽだうん関連語彙
+                if(widget.dictionaryItem.vocabulary!="")
+                  CustomBoard(
+                    title:  Column(
+                      children: [
+                        Text("関連語彙", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                      ],
+                    ),
+                    color: Color.fromRGBO(239, 239, 239, 1),
+                    contents: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(widget.dictionaryItem.vocabulary, ),
+                        ],
+                      ),
+                    ), expanded: expanded1,
+                    expansionFunc: (panelIndex, isExpanded){
+                      setState((){expanded1 = (expanded1) ?  false: true;
+
+                      });
+                    },
+                  ),
   ],
             ),
           ),

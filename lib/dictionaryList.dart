@@ -136,9 +136,9 @@ class _DictionaryListState extends State<DictionaryList> {
                                      foregroundColor: MaterialStateProperty.all<Color>(colorvolume)
                                  ),
                                  onPressed: ()async {
-                                   print(widget.dictionaryList[index].audio1);
-                                   print(widget.dictionaryList[index].audio2);
-                                   print(widget.dictionaryList[index].audio7);
+                                   // print(widget.dictionaryList[index].audio1);
+                                   // print(widget.dictionaryList[index].audio2);
+                                   // print(widget.dictionaryList[index].audio7);
                                     if (sound==false) EasyLoading.show();
                                          bgAudio.play(UrlSource(
                                              widget.dictionaryList[index].audio1));
