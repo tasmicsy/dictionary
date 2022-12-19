@@ -187,7 +187,15 @@ Japanese
                                         _editController2.clear();
                                         _editController3.clear();
                                         _editController4.clear();
-                                        setState((){voiceTmp=false;});
+                                        setState((){
+                                          voiceTmp=false;
+                                          japaneseTmp=null;
+                                          cantoneseTmp=null;
+                                          jyutpingTmp=null;
+                                          catonkneesTmp=null;
+
+
+                                        });
                                       },
                                       color: Colors.blue.shade100,
                                       name: Icon(Icons.delete, size:25.h)),

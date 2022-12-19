@@ -1,5 +1,5 @@
 
-import 'package:audioplayers/audioplayers.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:dictionary/secondpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -140,64 +140,93 @@ class _DictionaryListState extends State<DictionaryList> {
                                    // print(widget.dictionaryList[index].audio2);
                                    // print(widget.dictionaryList[index].audio7);
                                     if (sound==false) EasyLoading.show();
-                                         bgAudio.play(UrlSource(
-                                             widget.dictionaryList[index].audio1));
+
+                                        await  bgAudio.setUrl(
+                                             widget.dictionaryList[index].audio1);
 
                                          if (widget.dictionaryList[index].audio2!=""&&widget.dictionaryList[index].audio2!=null){
-
-                                           await Future.delayed(const Duration(milliseconds: 800));
-                                           bgAudio1.play(UrlSource(
-                                               widget.dictionaryList[index].audio2));
+await bgAudio1.setUrl(widget.dictionaryList[index].audio2);
                                          }
 
                                     if (widget.dictionaryList[index].audio3!=""&&widget.dictionaryList[index].audio3!=null){
                                       print("2");
-                                      await Future.delayed(const Duration(milliseconds: 800));
-                                      bgAudio1.play(UrlSource(
-                                          widget.dictionaryList[index].audio3));
+                                      await bgAudio2.setUrl(widget.dictionaryList[index].audio3);
                                     }
 
                                     if (widget.dictionaryList[index].audio4!=""&&widget.dictionaryList[index].audio4!=null){
                                       print("3");
-                                      await Future.delayed(const Duration(milliseconds: 800));
-                                      bgAudio1.play(UrlSource(
-                                          widget.dictionaryList[index].audio4));
+                                      await bgAudio3.setUrl(widget.dictionaryList[index].audio4);
                                     }
 
                                     if (widget.dictionaryList[index].audio5!=""&&widget.dictionaryList[index].audio5!=null){
                                       print("4");
-                                      await Future.delayed(const Duration(milliseconds: 800));
-                                      bgAudio1.play(UrlSource(
-                                          widget.dictionaryList[index].audio5));
+                                     await  bgAudio4.setUrl(widget.dictionaryList[index].audio5);
                                     }
 
                                     if (widget.dictionaryList[index].audio6!=""&&widget.dictionaryList[index].audio6!=null){
                                       print("5");
-                                      await Future.delayed(const Duration(milliseconds: 800));
-                                      bgAudio1.play(UrlSource(
-                                          widget.dictionaryList[index].audio6));
+                                     await  bgAudio5.setUrl(widget.dictionaryList[index].audio6);
                                     }
 
                                     if (widget.dictionaryList[index].audio7!=""&&widget.dictionaryList[index].audio7!=null){
                                       print("6");
+                                      await bgAudio6.setUrl(widget.dictionaryList[index].audio7);
+                                    }
+                                    if (widget.dictionaryList[index].audio8!=""&&widget.dictionaryList[index].audio8!=null){
+                                      await bgAudio7.setUrl(widget.dictionaryList[index].audio8);
+                                    }
+                                    if (widget.dictionaryList[index].audio9!=""&&widget.dictionaryList[index].audio9!=null){
+                                     await  bgAudio8.setUrl(widget.dictionaryList[index].audio9);
+                                    }
+                                    if (widget.dictionaryList[index].audio10!=""&&widget.dictionaryList[index].audio10!=null){
+                                      await bgAudio9.setUrl(widget.dictionaryList[index].audio10);
+                                    }
+
+                                    bgAudio.play();
+                                    if (widget.dictionaryList[index].audio2!=""&&widget.dictionaryList[index].audio2!=null){
                                       await Future.delayed(const Duration(milliseconds: 800));
-                                      bgAudio1.play(UrlSource(
-                                          widget.dictionaryList[index].audio7));
+                                      bgAudio1.play();
+                                    }
+
+                                    if (widget.dictionaryList[index].audio3!=""&&widget.dictionaryList[index].audio3!=null){
+                                      print("2");
+                                      await Future.delayed(const Duration(milliseconds: 800));
+                                      bgAudio2.play();
+                                    }
+
+                                    if (widget.dictionaryList[index].audio4!=""&&widget.dictionaryList[index].audio4!=null){
+                                      await Future.delayed(const Duration(milliseconds: 800));
+                                      bgAudio3.play();
+                                    }
+
+                                    if (widget.dictionaryList[index].audio5!=""&&widget.dictionaryList[index].audio5!=null){
+                                      await Future.delayed(const Duration(milliseconds: 800));
+                                      bgAudio4.play();
+                                    }
+
+                                    if (widget.dictionaryList[index].audio6!=""&&widget.dictionaryList[index].audio6!=null){
+                                      await Future.delayed(const Duration(milliseconds: 800));
+                                      bgAudio5.play();
+                                    }
+
+                                    if (widget.dictionaryList[index].audio7!=""&&widget.dictionaryList[index].audio7!=null){
+
+                                      await Future.delayed(const Duration(milliseconds: 800));
+                                      bgAudio6.play();
                                     }
                                     if (widget.dictionaryList[index].audio8!=""&&widget.dictionaryList[index].audio8!=null){
                                       await Future.delayed(const Duration(milliseconds: 800));
-                                      bgAudio1.play(UrlSource(
-                                          widget.dictionaryList[index].audio8));
+                                      bgAudio7.play();
                                     }
                                     if (widget.dictionaryList[index].audio9!=""&&widget.dictionaryList[index].audio9!=null){
+
                                       await Future.delayed(const Duration(milliseconds: 800));
-                                      bgAudio1.play(UrlSource(
-                                          widget.dictionaryList[index].audio9));
+                                      bgAudio8.play();
                                     }
                                     if (widget.dictionaryList[index].audio10!=""&&widget.dictionaryList[index].audio10!=null){
+                                      bgAudio9.setUrl(widget.dictionaryList[index].audio10);
                                       await Future.delayed(const Duration(milliseconds: 800));
-                                      bgAudio1.play(UrlSource(
-                                          widget.dictionaryList[index].audio10));
+                                      bgAudio9.play();
                                     }
                                    // if (voiceTimes== false)EasyLoading.dismiss();
                                    // if (voiceTimes==false) voiceTimes=true;

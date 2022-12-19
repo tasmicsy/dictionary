@@ -120,7 +120,7 @@ class DictionaryModel {
       for(var i=0;i<dictionaryList.length;i++) {
         if ((dictionaryList[i].chinese.contains(cantonese??""))
             && (dictionaryList[i].catOnknees.contains(catonknees??""))
-            && (dictionaryList[i].jyutping.contains(jyutping??""))
+            && (dictionaryList[i].jyutping.contains(jyutping??"")||dictionaryList[i].yale.contains(jyutping??""))
             && (dictionaryList[i].japanese.contains(japanese??""))
             &&  ((voiceItem== true && dictionaryList[i].voiceData=="Y")|| voiceItem==false)){
           dictionaryListTemp.insert(s, dictionaryList[i]);
