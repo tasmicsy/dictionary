@@ -1,4 +1,4 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:dictionary/readData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -55,14 +55,14 @@ class _SecondPageState extends State<SecondPage> {
             Padding(
               padding: const EdgeInsets.only(top:15.0),
               child: SizedBox(
-                width: MediaQuery.of(context).size.width*0.5,
+                width: MediaQuery.of(context).size.width*0.7,
                 height: MediaQuery.of(context).size.height *0.07,
                 child: ListView.builder(
                   itemCount: widget.dictionaryItem.chinese.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return Container(
-                      width:  MediaQuery.of(context).size.width*0.5/widget.dictionaryItem.chinese.length,
+                      width:  MediaQuery.of(context).size.width*0.7/widget.dictionaryItem.chinese.length,
                       alignment: Alignment.center,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -79,21 +79,21 @@ class _SecondPageState extends State<SecondPage> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width*0.5,
+              width: MediaQuery.of(context).size.width*0.7,
               height: MediaQuery.of(context).size.height *0.05,
               child: ListView.builder(
                   itemCount: widget.dictionaryItem.catOnknees.split(' ').length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return Container(
-                      width:  MediaQuery.of(context).size.width*0.5/widget.dictionaryItem.catOnknees.split(' ').length,
+                      width:  MediaQuery.of(context).size.width*0.7/widget.dictionaryItem.catOnknees.split(' ').length,
                       alignment: Alignment.center,
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children:[
                             FittedBox(child: Text(widget.dictionaryItem.catOnknees.split(' ')[index])),
                             
-                            FittedBox(child: Text(widget.dictionaryItem.yale.split(' ')[index])),
+                            FittedBox(child: Text(widget.dictionaryItem.jyutping.split(' ')[index])),
 
                           ]
                       ),
@@ -109,12 +109,12 @@ class _SecondPageState extends State<SecondPage> {
           child: Column(
             children:[
 
-              if (widget.dictionaryItem.voiceData!= "") SizedBox(
+               SizedBox(
                 height: 100.h,
                 child: Column(
                   children: [
                     ///スピーカー
-                    TextButton(
+                    (widget.dictionaryItem.voiceData== "Y")?TextButton(
                         style: ButtonStyle(
                           // backgroundColor: MaterialStateProperty.all(Colors.yellow),
                             alignment: Alignment.topCenter,
@@ -123,70 +123,130 @@ class _SecondPageState extends State<SecondPage> {
                         onPressed: ()async{
                           // if (voiceTimes==false) EasyLoading.show(status: "音声読み込み中");
                           setState((){colorvolume = Colors.grey;});
-                          player.play(UrlSource(
-                              widget.dictionaryItem.audio1));
-
+                          await player.setUrl(widget.dictionaryItem.audio1);
                           if (widget.dictionaryItem.audio2!=""&&widget.dictionaryItem.audio2!=null){
+                            await player1.setUrl(
+                                widget.dictionaryItem.audio2);
+                          }
+                          if (widget.dictionaryItem.audio3!=""&&widget.dictionaryItem.audio3!=null){
+                            await player2.setUrl(
+                                widget.dictionaryItem.audio3);
+                          }
 
+                          if (widget.dictionaryItem.audio4!=""&&widget.dictionaryItem.audio4!=null){
+                            await player3.setUrl(
+                                widget.dictionaryItem.audio4);
+                          }
+                          if (widget.dictionaryItem.audio5!=""&&widget.dictionaryItem.audio5!=null){
+                            await player4.setUrl(
+                                widget.dictionaryItem.audio5);
+                          }
+                          if (widget.dictionaryItem.audio6!=""&&widget.dictionaryItem.audio6!=null){
+                            await player5.setUrl(
+                                widget.dictionaryItem.audio6);
+                          }
+
+                          if (widget.dictionaryItem.audio7!=""&&widget.dictionaryItem.audio7!=null){
+                            await player6.setUrl(
+                                widget.dictionaryItem.audio7);
+                          }
+                          if (widget.dictionaryItem.audio8!=""&&widget.dictionaryItem.audio8!=null){
+                            await player7.setUrl(
+                                widget.dictionaryItem.audio8);
+                          }
+
+                          if (widget.dictionaryItem.audio9!=""&&widget.dictionaryItem.audio9!=null){
+                            await player8.setUrl(
+                                widget.dictionaryItem.audio9);
+                          }
+
+                          player.play();
+                          if (widget.dictionaryItem.audio2!=""&&widget.dictionaryItem.audio2!=null){
                             await Future.delayed(const Duration(milliseconds: 800));
-                            player1.play(UrlSource(
-                                widget.dictionaryItem.audio2));
+                            player1.play();
                           }
 
                           if (widget.dictionaryItem.audio3!=""&&widget.dictionaryItem.audio3!=null){
                             print("2");
                             await Future.delayed(const Duration(milliseconds: 800));
-                            player2.play(UrlSource(
-                                widget.dictionaryItem.audio3));
+                            player2.play();
                           }
 
                           if (widget.dictionaryItem.audio4!=""&&widget.dictionaryItem.audio4!=null){
                             print("3");
                             await Future.delayed(const Duration(milliseconds: 800));
-                           player3.play(UrlSource(
-                                widget.dictionaryItem.audio4));
+                           player3.play();
                           }
-
                           if (widget.dictionaryItem.audio5!=""&&widget.dictionaryItem.audio5!=null){
-                            print("4");
                             await Future.delayed(const Duration(milliseconds: 800));
-                           player4.play(UrlSource(
-                                widget.dictionaryItem.audio5));
+                            player4.play();
                           }
 
                           if (widget.dictionaryItem.audio6!=""&&widget.dictionaryItem.audio6!=null){
-                            print("5");
+                            print("2");
                             await Future.delayed(const Duration(milliseconds: 800));
-                            player5.play(UrlSource(
-                                widget.dictionaryItem.audio6));
+                            player5.play();
                           }
 
                           if (widget.dictionaryItem.audio7!=""&&widget.dictionaryItem.audio7!=null){
-                            print("6");
+                            print("3");
                             await Future.delayed(const Duration(milliseconds: 800));
-                            player6.play(UrlSource(
-                                widget.dictionaryItem.audio7));
+                            player6.play();
                           }
                           if (widget.dictionaryItem.audio8!=""&&widget.dictionaryItem.audio8!=null){
+                            print("2");
                             await Future.delayed(const Duration(milliseconds: 800));
-                            player7.play(UrlSource(
-                                widget.dictionaryItem.audio8));
+                            player7.play();
                           }
+
                           if (widget.dictionaryItem.audio9!=""&&widget.dictionaryItem.audio9!=null){
+                            print("3");
                             await Future.delayed(const Duration(milliseconds: 800));
-                            player8.play(UrlSource(
-                                widget.dictionaryItem.audio9));
+                            player8.play();
                           }
-                          if (widget.dictionaryItem.audio10!=""&&widget.dictionaryItem.audio10!=null){
-                            await Future.delayed(const Duration(milliseconds: 800));
-                            player9.play(UrlSource(
-                                widget.dictionaryItem.audio10));
-                          }
+
+
+                          //
+                          // if (widget.dictionaryItem.audio5!=""&&widget.dictionaryItem.audio5!=null){
+                          //   print("4");
+                          //   await Future.delayed(const Duration(milliseconds: 800));
+                          //  player4.play(UrlSource(
+                          //       widget.dictionaryItem.audio5));
+                          // }
+                          //
+                          // if (widget.dictionaryItem.audio6!=""&&widget.dictionaryItem.audio6!=null){
+                          //   print("5");
+                          //   await Future.delayed(const Duration(milliseconds: 800));
+                          //   player5.play(UrlSource(
+                          //       widget.dictionaryItem.audio6));
+                          // }
+                          //
+                          // if (widget.dictionaryItem.audio7!=""&&widget.dictionaryItem.audio7!=null){
+                          //   print("6");
+                          //   await Future.delayed(const Duration(milliseconds: 800));
+                          //   player6.play(UrlSource(
+                          //       widget.dictionaryItem.audio7));
+                          // }
+                          // if (widget.dictionaryItem.audio8!=""&&widget.dictionaryItem.audio8!=null){
+                          //   await Future.delayed(const Duration(milliseconds: 800));
+                          //   player7.play(UrlSource(
+                          //       widget.dictionaryItem.audio8));
+                          // }
+                          // if (widget.dictionaryItem.audio9!=""&&widget.dictionaryItem.audio9!=null){
+                          //   await Future.delayed(const Duration(milliseconds: 800));
+                          //   player8.play(UrlSource(
+                          //       widget.dictionaryItem.audio9));
+                          // }
+                          // if (widget.dictionaryItem.audio10!=""&&widget.dictionaryItem.audio10!=null){
+                          //   await Future.delayed(const Duration(milliseconds: 800));
+                          //   player9.play(UrlSource(
+                          //       widget.dictionaryItem.audio10));
+                          // }
                           setState((){colorvolume = Colors.black;});
                           // if (voiceTimes==false) EasyLoading.dismiss();
                           // if (voiceTimes==false) voiceTimes=true;
                         },
-                        child:Icon(Icons.volume_up, color: colorvolume, size:30.h)),
+                        child:Icon(Icons.volume_up, color: colorvolume, size:30.h)):SizedBox(height: 50.h),
 
 
                     ///区切り線
@@ -213,8 +273,9 @@ class _SecondPageState extends State<SecondPage> {
 
 
         /// ドロップダウン
-        SizedBox(
-          height: MediaQuery.of(context).size.height*0.3,
+        Container(
+
+          height: MediaQuery.of(context).size.height*0.5,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -236,9 +297,9 @@ class _SecondPageState extends State<SecondPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(widget.dictionaryItem.note1, ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 30.h),
                         Text(widget.dictionaryItem.note2,),
-                        SizedBox(height: 10),
+                        SizedBox(height: 30.h),
                         Text("Yale: ${widget.dictionaryItem.yale}", )
                       ],
                     ),
@@ -269,9 +330,9 @@ class _SecondPageState extends State<SecondPage> {
                           Text(widget.dictionaryItem.vocabulary, ),
                         ],
                       ),
-                    ), expanded: expanded1,
+                    ), expanded: expanded2,
                     expansionFunc: (panelIndex, isExpanded){
-                      setState((){expanded1 = (expanded1) ?  false: true;
+                      setState((){expanded2 = (expanded2) ?  false: true;
 
                       });
                     },
