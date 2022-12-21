@@ -1,3 +1,4 @@
+import 'package:dictionary/parameters.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:dictionary/readData.dart';
 import 'package:flutter/material.dart';
@@ -82,11 +83,12 @@ class _SecondPageState extends State<SecondPage> {
               width: MediaQuery.of(context).size.width*0.7,
               height: MediaQuery.of(context).size.height *0.05,
               child: ListView.builder(
-                  itemCount: widget.dictionaryItem.catOnknees.split(' ').length,
+                  itemCount: widget.dictionaryItem.jyutping.split(' ').length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
+
                     return Container(
-                      width:  MediaQuery.of(context).size.width*0.7/widget.dictionaryItem.catOnknees.split(' ').length,
+                      width:  MediaQuery.of(context).size.width*0.7/widget.dictionaryItem.jyutping.split(' ').length,
                       alignment: Alignment.center,
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -162,46 +164,46 @@ class _SecondPageState extends State<SecondPage> {
 
                           player.play();
                           if (widget.dictionaryItem.audio2!=""&&widget.dictionaryItem.audio2!=null){
-                            await Future.delayed(const Duration(milliseconds: 800));
+                            await Future.delayed(Duration(milliseconds: soundDelay));
                             player1.play();
                           }
 
                           if (widget.dictionaryItem.audio3!=""&&widget.dictionaryItem.audio3!=null){
                             print("2");
-                            await Future.delayed(const Duration(milliseconds: 800));
+                            await Future.delayed(Duration(milliseconds: soundDelay));
                             player2.play();
                           }
 
                           if (widget.dictionaryItem.audio4!=""&&widget.dictionaryItem.audio4!=null){
                             print("3");
-                            await Future.delayed(const Duration(milliseconds: 800));
+                            await Future.delayed(Duration(milliseconds: soundDelay));
                            player3.play();
                           }
                           if (widget.dictionaryItem.audio5!=""&&widget.dictionaryItem.audio5!=null){
-                            await Future.delayed(const Duration(milliseconds: 800));
+                            await Future.delayed(Duration(milliseconds: soundDelay));
                             player4.play();
                           }
 
                           if (widget.dictionaryItem.audio6!=""&&widget.dictionaryItem.audio6!=null){
                             print("2");
-                            await Future.delayed(const Duration(milliseconds: 800));
+                            await Future.delayed(Duration(milliseconds: soundDelay));
                             player5.play();
                           }
 
                           if (widget.dictionaryItem.audio7!=""&&widget.dictionaryItem.audio7!=null){
                             print("3");
-                            await Future.delayed(const Duration(milliseconds: 800));
+                            await Future.delayed(Duration(milliseconds: soundDelay));
                             player6.play();
                           }
                           if (widget.dictionaryItem.audio8!=""&&widget.dictionaryItem.audio8!=null){
                             print("2");
-                            await Future.delayed(const Duration(milliseconds: 800));
+                            await Future.delayed(Duration(milliseconds: soundDelay));
                             player7.play();
                           }
 
                           if (widget.dictionaryItem.audio9!=""&&widget.dictionaryItem.audio9!=null){
                             print("3");
-                            await Future.delayed(const Duration(milliseconds: 800));
+                            await Future.delayed(Duration(milliseconds: soundDelay));
                             player8.play();
                           }
 
