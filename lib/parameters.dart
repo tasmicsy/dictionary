@@ -1,0 +1,1 @@
+int soundDelay = 700;
