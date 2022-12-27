@@ -54,20 +54,20 @@ class LanguageTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(0.0),
       child: Stack(children: [
         Center(child: Text(kanji, textAlign: TextAlign.center,style:
         TextStyle(
-            fontSize: 45.sp,
+            fontSize: 45.h,
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontStyle: FontStyle.italic
         ),)),
         SizedBox(
-          height: 60.sp,
+          height: 60.h,
           child: Center(
             child: Text(alphabet,textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30.sp,
+              style: TextStyle(fontSize: 30.h,
                   color: Colors.grey),),
           ),
         )
@@ -95,8 +95,9 @@ class SearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2),
+      padding:  EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.h),
       child: Container(
+        height: 55.h,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(

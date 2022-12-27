@@ -68,7 +68,7 @@ class _SecondPageState extends State<SecondPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children:[
-                          FittedBox(child: SelectableText(widget.dictionaryItem.chinese[index], style: TextStyle(fontSize: 37),)),
+                          FittedBox(child: SelectableText(widget.dictionaryItem.chinese[index],maxLines: 1,style: TextStyle(fontSize: 37.h),)),
                           // Text(widget.dictionaryItem.catOnknees.split(' ')[index]),
                           // Text(widget.dictionaryItem.yale.split(' ')[index]),
 
@@ -81,7 +81,7 @@ class _SecondPageState extends State<SecondPage> {
             ),
             Container(
               width: MediaQuery.of(context).size.width*0.7,
-              height: MediaQuery.of(context).size.height *0.05,
+              height: MediaQuery.of(context).size.height *0.06,
               child: ListView.builder(
                   itemCount: widget.dictionaryItem.jyutping.split(' ').length,
                   scrollDirection: Axis.horizontal,
@@ -93,9 +93,9 @@ class _SecondPageState extends State<SecondPage> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children:[
-                            FittedBox(child: SelectableText(widget.dictionaryItem.catOnknees.split(' ')[index])),
+                            FittedBox(child: SelectableText(widget.dictionaryItem.catOnknees.split(' ')[index], maxLines: 1)),
                             
-                            FittedBox(child: SelectableText(widget.dictionaryItem.jyutping.split(' ')[index])),
+                            FittedBox(child: SelectableText(widget.dictionaryItem.jyutping.split(' ')[index], maxLines: 1)),
 
                           ]
                       ),

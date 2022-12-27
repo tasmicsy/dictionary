@@ -1,4 +1,6 @@
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:dictionary/ad_helper.dart';
 import 'package:dictionary/buttons.dart';
 import 'package:dictionary/dictionaryList.dart';
 import 'package:dictionary/firebase_options.dart';
@@ -8,19 +10,40 @@ import 'package:dictionary/titleLogo.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Future<void> initPlugin() async {
+    final status = await AppTrackingTransparency.trackingAuthorizationStatus;
+    if (status == TrackingStatus.notDetermined) {
+      await Future.delayed(const Duration(milliseconds: 200));
+      await AppTrackingTransparency.requestTrackingAuthorization();
+    }
+  }
+  @override
+  void initState() {
+    super.initState();
+    // Can't show a dialog in initState, delaying initialization
+    WidgetsBinding.instance?.addPostFrameCallback((_) => initPlugin());
+  }
 
   // This widget is the root of your application.
   @override
@@ -46,6 +69,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late BannerAd _bannerAd;
+  bool _isBannerAdReady = false;
+
   final player = AudioPlayer();
   final bgAudio = AudioPlayer();
   final bgAudio1 = AudioPlayer();
@@ -64,6 +90,27 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     // bgAudio.play(UrlSource("https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
+    super.initState();
+    _bannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (_)
+        {
+          //print("できてるらしい");
+          setState(() {
+            _isBannerAdReady = true;
+          });
+        },
+        onAdFailedToLoad: (ad, err) {
+          //print('Failed to load a banner ad: ${err.message}');
+          _isBannerAdReady = false;
+          ad.dispose();
+        },
+      ),
+    );
+    _bannerAd.load();
     Future(()async{
       await player.play(UrlSource(
           "https://catonknees.com/wp-content/uploads/2022/10/2s.mp3"));
@@ -280,6 +327,12 @@ Japanese
                                 ],
                               )
                           )),
+                      (_isBannerAdReady)?SizedBox(
+                        width: _bannerAd.size.width.toDouble(),
+                        height: _bannerAd.size.height.toDouble(),
+                        child: AdWidget(ad: _bannerAd),
+                      ):
+                      SizedBox(width: 30, height: 47),
                     ],
                   ),
             ),
