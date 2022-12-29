@@ -68,7 +68,7 @@ class _SecondPageState extends State<SecondPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children:[
-                          FittedBox(child: Text(widget.dictionaryItem.chinese[index], style: TextStyle(fontSize: 37),)),
+                          FittedBox(child: SelectableText(widget.dictionaryItem.chinese[index],maxLines: 1,style: TextStyle(fontSize: 37.h),)),
                           // Text(widget.dictionaryItem.catOnknees.split(' ')[index]),
                           // Text(widget.dictionaryItem.yale.split(' ')[index]),
 
@@ -81,7 +81,7 @@ class _SecondPageState extends State<SecondPage> {
             ),
             Container(
               width: MediaQuery.of(context).size.width*0.7,
-              height: MediaQuery.of(context).size.height *0.05,
+              height: MediaQuery.of(context).size.height *0.06,
               child: ListView.builder(
                   itemCount: widget.dictionaryItem.jyutping.split(' ').length,
                   scrollDirection: Axis.horizontal,
@@ -93,9 +93,9 @@ class _SecondPageState extends State<SecondPage> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children:[
-                            FittedBox(child: Text(widget.dictionaryItem.catOnknees.split(' ')[index])),
+                            FittedBox(child: SelectableText(widget.dictionaryItem.catOnknees.split(' ')[index], maxLines: 1)),
                             
-                            FittedBox(child: Text(widget.dictionaryItem.jyutping.split(' ')[index])),
+                            FittedBox(child: SelectableText(widget.dictionaryItem.jyutping.split(' ')[index], maxLines: 1)),
 
                           ]
                       ),
@@ -259,7 +259,7 @@ class _SecondPageState extends State<SecondPage> {
                     ),
 
                     ///日本語訳
-                    Text(
+                    SelectableText(
                       widget.dictionaryItem.japanese
                     )
 
@@ -287,8 +287,8 @@ class _SecondPageState extends State<SecondPage> {
                   CustomBoard(
                   title:  Column(
               children: [
-                Text(widget.dictionaryItem.category, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                Text(widget.dictionaryItem.type)
+                SelectableText(widget.dictionaryItem.category, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                SelectableText(widget.dictionaryItem.type)
               ],
           ),
                   color: Color.fromRGBO(239, 239, 239, 1),
@@ -298,11 +298,11 @@ class _SecondPageState extends State<SecondPage> {
 
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(widget.dictionaryItem.note1, ),
+                        SelectableText(widget.dictionaryItem.note1, ),
                         SizedBox(height: 30.h),
-                        Text(widget.dictionaryItem.note2,),
+                        SelectableText(widget.dictionaryItem.note2,),
                         SizedBox(height: 30.h),
-                        Text("Yale: ${widget.dictionaryItem.yale}", )
+                        SelectableText("Yale: ${widget.dictionaryItem.yale}", )
                       ],
                     ),
                   ), expanded: expanded1,
@@ -319,7 +319,7 @@ class _SecondPageState extends State<SecondPage> {
                   CustomBoard(
                     title:  Column(
                       children: [
-                        Text("関連語彙", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                        SelectableText("関連語彙", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                       ],
                     ),
                     color: Color.fromRGBO(239, 239, 239, 1),
@@ -329,7 +329,7 @@ class _SecondPageState extends State<SecondPage> {
 
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(widget.dictionaryItem.vocabulary, ),
+                          SelectableText(widget.dictionaryItem.vocabulary, ),
                         ],
                       ),
                     ), expanded: expanded2,
@@ -378,7 +378,7 @@ class CustromTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding:EdgeInsets.only(top: 8.h),
-      child: Text(title, textAlign: TextAlign.center,style: TextStyle(fontSize: 20.h, fontWeight: FontWeight.bold)),
+      child: SelectableText(title, textAlign: TextAlign.center,style: TextStyle(fontSize: 20.h, fontWeight: FontWeight.bold)),
     );
   }
 }
