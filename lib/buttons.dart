@@ -72,6 +72,13 @@ Android版→ https://play.google.com/store/apps/details?id=com.catonknees.conve
                             """);
               }, child: Text("シェアする", style: TextStyle(fontSize: 15.h),)),
             ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 3),
+              child: TextButton(onPressed: (){
+                launchUrl(Uri.parse("https://catonknees.com/DicAppRequest"));
+              }, child: Text("単語追加・訂正・その他リクエスト", style: TextStyle(fontSize: 15.h),)),
+            ),
           ],
 
         );
