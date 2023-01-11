@@ -111,161 +111,163 @@ class _SecondPageState extends State<SecondPage> {
           child: Column(
             children:[
 
-               SizedBox(
-                height: 100.h,
-                child: Column(
-                  children: [
-                    ///スピーカー
-                    (widget.dictionaryItem.voiceData== "Y")?TextButton(
-                        style: ButtonStyle(
-                          // backgroundColor: MaterialStateProperty.all(Colors.yellow),
-                            alignment: Alignment.topCenter,
-                            overlayColor: MaterialStateProperty.all(Colors.white,)
-                        ),
-                        onPressed: ()async{
-                          // if (voiceTimes==false) EasyLoading.show(status: "音声読み込み中");
-                          setState((){colorvolume = Colors.grey;});
-                          await player.setUrl(widget.dictionaryItem.audio1);
-                          if (widget.dictionaryItem.audio2!=""&&widget.dictionaryItem.audio2!=null){
-                            await player1.setUrl(
-                                widget.dictionaryItem.audio2);
-                          }
-                          if (widget.dictionaryItem.audio3!=""&&widget.dictionaryItem.audio3!=null){
-                            await player2.setUrl(
-                                widget.dictionaryItem.audio3);
-                          }
+               Column(
+                 children: [
+                   ///スピーカー
+                   (widget.dictionaryItem.voiceData== "Y")?TextButton(
+                       style: ButtonStyle(
+                         // backgroundColor: MaterialStateProperty.all(Colors.yellow),
+                           alignment: Alignment.topCenter,
+                           overlayColor: MaterialStateProperty.all(Colors.white,)
+                       ),
+                       onPressed: ()async{
+                         // if (voiceTimes==false) EasyLoading.show(status: "音声読み込み中");
+                         setState((){colorvolume = Colors.grey;});
+                         await player.setUrl(widget.dictionaryItem.audio1);
+                         if (widget.dictionaryItem.audio2!=""&&widget.dictionaryItem.audio2!=null){
+                           await player1.setUrl(
+                               widget.dictionaryItem.audio2);
+                         }
+                         if (widget.dictionaryItem.audio3!=""&&widget.dictionaryItem.audio3!=null){
+                           await player2.setUrl(
+                               widget.dictionaryItem.audio3);
+                         }
 
-                          if (widget.dictionaryItem.audio4!=""&&widget.dictionaryItem.audio4!=null){
-                            await player3.setUrl(
-                                widget.dictionaryItem.audio4);
-                          }
-                          if (widget.dictionaryItem.audio5!=""&&widget.dictionaryItem.audio5!=null){
-                            await player4.setUrl(
-                                widget.dictionaryItem.audio5);
-                          }
-                          if (widget.dictionaryItem.audio6!=""&&widget.dictionaryItem.audio6!=null){
-                            await player5.setUrl(
-                                widget.dictionaryItem.audio6);
-                          }
+                         if (widget.dictionaryItem.audio4!=""&&widget.dictionaryItem.audio4!=null){
+                           await player3.setUrl(
+                               widget.dictionaryItem.audio4);
+                         }
+                         if (widget.dictionaryItem.audio5!=""&&widget.dictionaryItem.audio5!=null){
+                           await player4.setUrl(
+                               widget.dictionaryItem.audio5);
+                         }
+                         if (widget.dictionaryItem.audio6!=""&&widget.dictionaryItem.audio6!=null){
+                           await player5.setUrl(
+                               widget.dictionaryItem.audio6);
+                         }
 
-                          if (widget.dictionaryItem.audio7!=""&&widget.dictionaryItem.audio7!=null){
-                            await player6.setUrl(
-                                widget.dictionaryItem.audio7);
-                          }
-                          if (widget.dictionaryItem.audio8!=""&&widget.dictionaryItem.audio8!=null){
-                            await player7.setUrl(
-                                widget.dictionaryItem.audio8);
-                          }
+                         if (widget.dictionaryItem.audio7!=""&&widget.dictionaryItem.audio7!=null){
+                           await player6.setUrl(
+                               widget.dictionaryItem.audio7);
+                         }
+                         if (widget.dictionaryItem.audio8!=""&&widget.dictionaryItem.audio8!=null){
+                           await player7.setUrl(
+                               widget.dictionaryItem.audio8);
+                         }
 
-                          if (widget.dictionaryItem.audio9!=""&&widget.dictionaryItem.audio9!=null){
-                            await player8.setUrl(
-                                widget.dictionaryItem.audio9);
-                          }
+                         if (widget.dictionaryItem.audio9!=""&&widget.dictionaryItem.audio9!=null){
+                           await player8.setUrl(
+                               widget.dictionaryItem.audio9);
+                         }
 
-                          player.play();
-                          if (widget.dictionaryItem.audio2!=""&&widget.dictionaryItem.audio2!=null){
-                            await Future.delayed(Duration(milliseconds: soundDelay));
-                            player1.play();
-                          }
+                         player.play();
+                         if (widget.dictionaryItem.audio2!=""&&widget.dictionaryItem.audio2!=null){
+                           await Future.delayed(Duration(milliseconds: soundDelay));
+                           player1.play();
+                         }
 
-                          if (widget.dictionaryItem.audio3!=""&&widget.dictionaryItem.audio3!=null){
-                            print("2");
-                            await Future.delayed(Duration(milliseconds: soundDelay));
-                            player2.play();
-                          }
+                         if (widget.dictionaryItem.audio3!=""&&widget.dictionaryItem.audio3!=null){
+                           print("2");
+                           await Future.delayed(Duration(milliseconds: soundDelay));
+                           player2.play();
+                         }
 
-                          if (widget.dictionaryItem.audio4!=""&&widget.dictionaryItem.audio4!=null){
-                            print("3");
-                            await Future.delayed(Duration(milliseconds: soundDelay));
-                           player3.play();
-                          }
-                          if (widget.dictionaryItem.audio5!=""&&widget.dictionaryItem.audio5!=null){
-                            await Future.delayed(Duration(milliseconds: soundDelay));
-                            player4.play();
-                          }
+                         if (widget.dictionaryItem.audio4!=""&&widget.dictionaryItem.audio4!=null){
+                           print("3");
+                           await Future.delayed(Duration(milliseconds: soundDelay));
+                          player3.play();
+                         }
+                         if (widget.dictionaryItem.audio5!=""&&widget.dictionaryItem.audio5!=null){
+                           await Future.delayed(Duration(milliseconds: soundDelay));
+                           player4.play();
+                         }
 
-                          if (widget.dictionaryItem.audio6!=""&&widget.dictionaryItem.audio6!=null){
-                            print("2");
-                            await Future.delayed(Duration(milliseconds: soundDelay));
-                            player5.play();
-                          }
+                         if (widget.dictionaryItem.audio6!=""&&widget.dictionaryItem.audio6!=null){
+                           print("2");
+                           await Future.delayed(Duration(milliseconds: soundDelay));
+                           player5.play();
+                         }
 
-                          if (widget.dictionaryItem.audio7!=""&&widget.dictionaryItem.audio7!=null){
-                            print("3");
-                            await Future.delayed(Duration(milliseconds: soundDelay));
-                            player6.play();
-                          }
-                          if (widget.dictionaryItem.audio8!=""&&widget.dictionaryItem.audio8!=null){
-                            print("2");
-                            await Future.delayed(Duration(milliseconds: soundDelay));
-                            player7.play();
-                          }
+                         if (widget.dictionaryItem.audio7!=""&&widget.dictionaryItem.audio7!=null){
+                           print("3");
+                           await Future.delayed(Duration(milliseconds: soundDelay));
+                           player6.play();
+                         }
+                         if (widget.dictionaryItem.audio8!=""&&widget.dictionaryItem.audio8!=null){
+                           print("2");
+                           await Future.delayed(Duration(milliseconds: soundDelay));
+                           player7.play();
+                         }
 
-                          if (widget.dictionaryItem.audio9!=""&&widget.dictionaryItem.audio9!=null){
-                            print("3");
-                            await Future.delayed(Duration(milliseconds: soundDelay));
-                            player8.play();
-                          }
+                         if (widget.dictionaryItem.audio9!=""&&widget.dictionaryItem.audio9!=null){
+                           print("3");
+                           await Future.delayed(Duration(milliseconds: soundDelay));
+                           player8.play();
+                         }
 
 
-                          //
-                          // if (widget.dictionaryItem.audio5!=""&&widget.dictionaryItem.audio5!=null){
-                          //   print("4");
-                          //   await Future.delayed(const Duration(milliseconds: 800));
-                          //  player4.play(UrlSource(
-                          //       widget.dictionaryItem.audio5));
-                          // }
-                          //
-                          // if (widget.dictionaryItem.audio6!=""&&widget.dictionaryItem.audio6!=null){
-                          //   print("5");
-                          //   await Future.delayed(const Duration(milliseconds: 800));
-                          //   player5.play(UrlSource(
-                          //       widget.dictionaryItem.audio6));
-                          // }
-                          //
-                          // if (widget.dictionaryItem.audio7!=""&&widget.dictionaryItem.audio7!=null){
-                          //   print("6");
-                          //   await Future.delayed(const Duration(milliseconds: 800));
-                          //   player6.play(UrlSource(
-                          //       widget.dictionaryItem.audio7));
-                          // }
-                          // if (widget.dictionaryItem.audio8!=""&&widget.dictionaryItem.audio8!=null){
-                          //   await Future.delayed(const Duration(milliseconds: 800));
-                          //   player7.play(UrlSource(
-                          //       widget.dictionaryItem.audio8));
-                          // }
-                          // if (widget.dictionaryItem.audio9!=""&&widget.dictionaryItem.audio9!=null){
-                          //   await Future.delayed(const Duration(milliseconds: 800));
-                          //   player8.play(UrlSource(
-                          //       widget.dictionaryItem.audio9));
-                          // }
-                          // if (widget.dictionaryItem.audio10!=""&&widget.dictionaryItem.audio10!=null){
-                          //   await Future.delayed(const Duration(milliseconds: 800));
-                          //   player9.play(UrlSource(
-                          //       widget.dictionaryItem.audio10));
-                          // }
-                          setState((){colorvolume = Colors.black;});
-                          // if (voiceTimes==false) EasyLoading.dismiss();
-                          // if (voiceTimes==false) voiceTimes=true;
-                        },
-                        child:Icon(Icons.volume_up, color: colorvolume, size:30.h)):SizedBox(height: 50.h),
+                         //
+                         // if (widget.dictionaryItem.audio5!=""&&widget.dictionaryItem.audio5!=null){
+                         //   print("4");
+                         //   await Future.delayed(const Duration(milliseconds: 800));
+                         //  player4.play(UrlSource(
+                         //       widget.dictionaryItem.audio5));
+                         // }
+                         //
+                         // if (widget.dictionaryItem.audio6!=""&&widget.dictionaryItem.audio6!=null){
+                         //   print("5");
+                         //   await Future.delayed(const Duration(milliseconds: 800));
+                         //   player5.play(UrlSource(
+                         //       widget.dictionaryItem.audio6));
+                         // }
+                         //
+                         // if (widget.dictionaryItem.audio7!=""&&widget.dictionaryItem.audio7!=null){
+                         //   print("6");
+                         //   await Future.delayed(const Duration(milliseconds: 800));
+                         //   player6.play(UrlSource(
+                         //       widget.dictionaryItem.audio7));
+                         // }
+                         // if (widget.dictionaryItem.audio8!=""&&widget.dictionaryItem.audio8!=null){
+                         //   await Future.delayed(const Duration(milliseconds: 800));
+                         //   player7.play(UrlSource(
+                         //       widget.dictionaryItem.audio8));
+                         // }
+                         // if (widget.dictionaryItem.audio9!=""&&widget.dictionaryItem.audio9!=null){
+                         //   await Future.delayed(const Duration(milliseconds: 800));
+                         //   player8.play(UrlSource(
+                         //       widget.dictionaryItem.audio9));
+                         // }
+                         // if (widget.dictionaryItem.audio10!=""&&widget.dictionaryItem.audio10!=null){
+                         //   await Future.delayed(const Duration(milliseconds: 800));
+                         //   player9.play(UrlSource(
+                         //       widget.dictionaryItem.audio10));
+                         // }
+                         setState((){colorvolume = Colors.black;});
+                         // if (voiceTimes==false) EasyLoading.dismiss();
+                         // if (voiceTimes==false) voiceTimes=true;
+                       },
+                       child:Icon(Icons.volume_up, color: colorvolume, size:30.h)):SizedBox(height: 50.h),
 
 
-                    ///区切り線
-                    Container(
-                      height: 1,
-                      width: MediaQuery.of(context).size.width*0.7,
-                      color: Colors.grey,
-                    ),
+                   ///区切り線
+                   Container(
+                     height: 1,
+                     width: MediaQuery.of(context).size.width*0.7,
+                     color: Colors.grey,
+                   ),
 
-                    ///日本語訳
-                    SelectableText(
-                      widget.dictionaryItem.japanese
-                    )
+                   ///日本語訳
+                   Container(
+                     alignment: Alignment.center,
+                       width: MediaQuery.of(context).size.width*0.75,
+                     padding: EdgeInsets.all(5),
+                     child: SelectableText(
+                       widget.dictionaryItem.japanese
+                     ),
+                   )
 
-                  ],
-                ),
-              ),
+                 ],
+               ),
 
 
 
@@ -298,10 +300,10 @@ class _SecondPageState extends State<SecondPage> {
 
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SelectableText(widget.dictionaryItem.note1, ),
-                        SizedBox(height: 30.h),
-                        SelectableText(widget.dictionaryItem.note2,),
-                        SizedBox(height: 30.h),
+                        if(widget.dictionaryItem.note1 != "")SelectableText(widget.dictionaryItem.note1, ),
+                        if(widget.dictionaryItem.note1 != "")SizedBox(height: 30.h),
+                        if(widget.dictionaryItem.note2 != "")SelectableText(widget.dictionaryItem.note2,),
+                        if(widget.dictionaryItem.note2 != "")SizedBox(height: 30.h),
                         SelectableText("Yale: ${widget.dictionaryItem.yale}", )
                       ],
                     ),
@@ -319,7 +321,7 @@ class _SecondPageState extends State<SecondPage> {
                   CustomBoard(
                     title:  Column(
                       children: [
-                        SelectableText("関連語彙", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                        SelectableText("関連語彙・例文", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                       ],
                     ),
                     color: Color.fromRGBO(239, 239, 239, 1),

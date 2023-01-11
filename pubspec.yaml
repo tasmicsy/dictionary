@@ -46,7 +46,7 @@ dependencies:
   just_audio: ^0.9.30
   url_launcher: ^6.1.6
   audioplayers: ^1.1.1
-  flutter_screenutil: ^5.5.4
+  flutter_screenutil: ^5.6.0
   share: ^2.0.4
   firebase_core: ^2.1.1
   firebase_auth: ^4.1.0
