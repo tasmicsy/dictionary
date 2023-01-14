@@ -289,22 +289,26 @@ class _SecondPageState extends State<SecondPage> {
                   CustomBoard(
                   title:  Column(
               children: [
-                SelectableText(widget.dictionaryItem.category, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                SelectableText(widget.dictionaryItem.type)
+                SelectableText("備考・解説", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+
               ],
           ),
                   color: Color.fromRGBO(239, 239, 239, 1),
                   contents: Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding:  const EdgeInsets.only(top:0,bottom: 20, right:20,left:20),
                     child: Column(
 
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if(widget.dictionaryItem.note1 != "")SelectableText(widget.dictionaryItem.note1, ),
+                        SelectableText("【${widget.dictionaryItem.category}】${widget.dictionaryItem.type}"),
+                        SizedBox(height: 30.h),
+                        SelectableText("Jyutping: ${widget.dictionaryItem.jyutping}", ),
+                        SelectableText("Yale: ${widget.dictionaryItem.yale}", ),
+
                         if(widget.dictionaryItem.note1 != "")SizedBox(height: 30.h),
-                        if(widget.dictionaryItem.note2 != "")SelectableText(widget.dictionaryItem.note2,),
-                        if(widget.dictionaryItem.note2 != "")SizedBox(height: 30.h),
-                        SelectableText("Yale: ${widget.dictionaryItem.yale}", )
+                        if(widget.dictionaryItem.note1 != "")SelectableText(widget.dictionaryItem.note1, ),
+
+
                       ],
                     ),
                   ), expanded: expanded1,
@@ -315,23 +319,47 @@ class _SecondPageState extends State<SecondPage> {
                   },
                 ),
 
-
-                /// どろっぽだうん関連語彙
-                if(widget.dictionaryItem.vocabulary!="")
+///関連文法
+                if(widget.dictionaryItem.note2!="")
                   CustomBoard(
                     title:  Column(
                       children: [
-                        SelectableText("関連語彙・例文", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                        SelectableText("関連文法", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                       ],
                     ),
                     color: Color.fromRGBO(239, 239, 239, 1),
                     contents: Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding:  const EdgeInsets.only(top:0,bottom: 20, right:20,left:20),
+                      child: Column(
+
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if(widget.dictionaryItem.note2 != "")SelectableText(widget.dictionaryItem.note2,),
+
+                        ],
+                      ),
+                    ), expanded: expanded2,
+                    expansionFunc: (panelIndex, isExpanded){
+                      setState((){expanded2 = (expanded2) ?  false: true;
+
+                      });
+                    },
+                  ),
+
+
+                /// どろっぽだうん関連語彙
+                if(widget.dictionaryItem.vocabulary!="")
+                  CustomBoard(
+                    title:  SelectableText("関連語彙・例文", textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                    color: Color.fromRGBO(239, 239, 239, 1),
+                    contents: Padding(
+                      padding: const EdgeInsets.only(top:0,bottom: 20, right:20,left:20),
                       child: Column(
 
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SelectableText(widget.dictionaryItem.vocabulary, ),
+
                         ],
                       ),
                     ), expanded: expanded2,
