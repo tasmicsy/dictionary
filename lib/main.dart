@@ -13,6 +13,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
+///全画面広告
+AppOpenAd? openAd;
+Future<void> loadInitialAd()async{
+  await AppOpenAd.load(
+      adUnitId: AdHelper.displayAdUnitId,
+      request: const AdRequest(),
+      adLoadCallback: AppOpenAdLoadCallback(
+          onAdLoaded: (ad){
+            print("Ad is loadedddd");
+            openAd = ad;
+            openAd!.show();
+          },
+          onAdFailedToLoad: (error){
+            print("ad failed to load ${error}");
+          }
+      ), orientation: AppOpenAd.orientationPortrait
+  );
+}
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -86,11 +104,16 @@ class _MyHomePageState extends State<MyHomePage> {
   String? catonkneesTmp;
   String? japaneseTmp;
   bool voiceTmp=false;
+  InterstitialAd? _interstitialAd;
+  AdInterstitial adInterstitial = new AdInterstitial();
 
   @override
   void initState() {
     // bgAudio.play(UrlSource("https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
     super.initState();
+    adInterstitial.createAd();
+
+loadInitialAd();
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
@@ -126,7 +149,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return FutureBuilder<List<DictionaryModel>>(
         future: DictionaryModel.fetchDictionary(),
         builder: (context, snapshot) {
-
+// print("\ud84a\udf43");
+// print("𢭃");
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Color.fromRGBO(37, 82, 143, 1),
@@ -190,6 +214,7 @@ CatOnKnees
                           )),
 
                           Column(
+
                             children: [
                               SearchContainer(
                                 height: height*0.2,
@@ -213,43 +238,47 @@ Japanese
 
                                 ],
                               )),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                    child: ClearButton(
-                                        onPressedFunc: (){
-                                          setState((){
-                                            voiceTmp = (voiceTmp==true)? false: true;
-                                            // print(voiceTmp);
-                                          });
-                                        },
-                                        color: (voiceTmp == false) ? Colors.grey: Color.fromRGBO(186, 206, 179, 1),
-                                        name: Icon(Icons.volume_up, size:25.h)),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                    child: ClearButton(
-                                        onPressedFunc: (){
-                                          _editController1.clear();
-                                          _editController2.clear();
-                                          _editController3.clear();
-                                          _editController4.clear();
-                                          setState((){
-                                            voiceTmp=false;
-                                            japaneseTmp=null;
-                                            cantoneseTmp=null;
-                                            jyutpingTmp=null;
-                                            catonkneesTmp=null;
+                              Container(
+                                height: height*0.1,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: ClearButton(
+                                          onPressedFunc: (){
+                                            setState((){
+                                              voiceTmp = (voiceTmp==true)? false: true;
+                                              // print(voiceTmp);
+                                            });
+                                          },
+                                          color: (voiceTmp == false) ? Colors.grey: Color.fromRGBO(186, 206, 179, 1),
+                                          name: Icon(Icons.volume_up, size:25.h)),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: ClearButton(
+                                          onPressedFunc: (){
+                                            _editController1.clear();
+                                            _editController2.clear();
+                                            _editController3.clear();
+                                            _editController4.clear();
+                                            setState((){
+                                              voiceTmp=false;
+                                              japaneseTmp=null;
+                                              cantoneseTmp=null;
+                                              jyutpingTmp=null;
+                                              catonkneesTmp=null;
 
 
-                                          });
-                                        },
-                                        color: Colors.blue.shade100,
-                                        name: Icon(Icons.delete, size:25.h)),
-                                  ),
+                                            });
+                                          },
+                                          color: Colors.blue.shade100,
+                                          name: Icon(Icons.delete, size:25.h)),
+                                    ),
 
-                                ],
+                                  ],
+                                ),
                               )
                             ],
                           ),
