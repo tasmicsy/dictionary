@@ -362,9 +362,9 @@ class _SecondPageState extends State<SecondPage> {
 
                         ],
                       ),
-                    ), expanded: expanded2,
+                    ), expanded: expanded3,
                     expansionFunc: (panelIndex, isExpanded){
-                      setState((){expanded2 = (expanded2) ?  false: true;
+                      setState((){expanded3 = (expanded3) ?  false: true;
 
                       });
                     },
