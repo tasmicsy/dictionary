@@ -62,13 +62,14 @@ class _SecondPageState extends State<SecondPage> {
                   itemCount: widget.dictionaryItem.chinese.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
+                    print(widget.dictionaryItem.chinese.characters.length);
                     return Container(
-                      width:  MediaQuery.of(context).size.width*0.7/widget.dictionaryItem.chinese.length,
+                      width:  MediaQuery.of(context).size.width*0.7/widget.dictionaryItem.chinese.characters.length,
                       alignment: Alignment.center,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children:[
-                          FittedBox(child: SelectableText(widget.dictionaryItem.chinese[index],maxLines: 1,style: TextStyle(fontSize: 37.h),)),
+                          FittedBox(child: SelectableText(widget.dictionaryItem.chinese.characters.characterAt(index).string,maxLines: 1,style: TextStyle(fontSize: 37.h),)),
                           // Text(widget.dictionaryItem.catOnknees.split(' ')[index]),
                           // Text(widget.dictionaryItem.yale.split(' ')[index]),
 
