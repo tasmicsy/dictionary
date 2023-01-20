@@ -165,12 +165,14 @@ class _SecondPageState extends State<SecondPage> {
                          if (widget.dictionaryItem.audio2!=""&&widget.dictionaryItem.audio2!=null){
                            await Future.delayed(Duration(milliseconds: soundDelay));
                            player1.play();
+
                          }
 
                          if (widget.dictionaryItem.audio3!=""&&widget.dictionaryItem.audio3!=null){
                            print("2");
                            await Future.delayed(Duration(milliseconds: soundDelay));
                            player2.play();
+
                          }
 
                          if (widget.dictionaryItem.audio4!=""&&widget.dictionaryItem.audio4!=null){
@@ -205,6 +207,16 @@ class _SecondPageState extends State<SecondPage> {
                            await Future.delayed(Duration(milliseconds: soundDelay));
                            player8.play();
                          }
+                         await Future.delayed(Duration(milliseconds: soundDelay));
+                         player1.stop();
+                         player2.stop();
+                         player3.stop();
+                         player4.stop();
+                         player5.stop();
+                         player6.stop();
+                         player7.stop();
+                         player8.stop();
+
 
 
                          //
