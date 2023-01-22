@@ -229,6 +229,16 @@ await bgAudio1.setUrl(widget.dictionaryList[index].audio2);
                                       await Future.delayed(Duration(milliseconds: soundDelay));
                                       bgAudio9.play();
                                     }
+                                    await Future.delayed(Duration(milliseconds: soundDelay));
+                                    bgAudio1.stop();
+                                    bgAudio2.stop();
+                                    bgAudio3.stop();
+                                    bgAudio4.stop();
+                                    bgAudio5.stop();
+                                    bgAudio6.stop();
+                                    bgAudio7.stop();
+                                    bgAudio8.stop();
+                                    bgAudio9.stop();
                                    // if (voiceTimes== false)EasyLoading.dismiss();
                                    // if (voiceTimes==false) voiceTimes=true;
 

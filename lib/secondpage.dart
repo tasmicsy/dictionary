@@ -62,13 +62,14 @@ class _SecondPageState extends State<SecondPage> {
                   itemCount: widget.dictionaryItem.chinese.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
+                    print(widget.dictionaryItem.chinese.characters.length);
                     return Container(
-                      width:  MediaQuery.of(context).size.width*0.7/widget.dictionaryItem.chinese.length,
+                      width:  MediaQuery.of(context).size.width*0.7/widget.dictionaryItem.chinese.characters.length,
                       alignment: Alignment.center,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children:[
-                          FittedBox(child: SelectableText(widget.dictionaryItem.chinese[index],maxLines: 1,style: TextStyle(fontSize: 37.h),)),
+                          FittedBox(child: SelectableText(widget.dictionaryItem.chinese.characters.characterAt(index).string,maxLines: 1,style: TextStyle(fontSize: 37.h),)),
                           // Text(widget.dictionaryItem.catOnknees.split(' ')[index]),
                           // Text(widget.dictionaryItem.yale.split(' ')[index]),
 
@@ -164,12 +165,14 @@ class _SecondPageState extends State<SecondPage> {
                          if (widget.dictionaryItem.audio2!=""&&widget.dictionaryItem.audio2!=null){
                            await Future.delayed(Duration(milliseconds: soundDelay));
                            player1.play();
+
                          }
 
                          if (widget.dictionaryItem.audio3!=""&&widget.dictionaryItem.audio3!=null){
                            print("2");
                            await Future.delayed(Duration(milliseconds: soundDelay));
                            player2.play();
+
                          }
 
                          if (widget.dictionaryItem.audio4!=""&&widget.dictionaryItem.audio4!=null){
@@ -204,6 +207,16 @@ class _SecondPageState extends State<SecondPage> {
                            await Future.delayed(Duration(milliseconds: soundDelay));
                            player8.play();
                          }
+                         await Future.delayed(Duration(milliseconds: soundDelay));
+                         player1.stop();
+                         player2.stop();
+                         player3.stop();
+                         player4.stop();
+                         player5.stop();
+                         player6.stop();
+                         player7.stop();
+                         player8.stop();
+
 
 
                          //
