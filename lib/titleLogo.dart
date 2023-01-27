@@ -8,24 +8,27 @@ class CatOnKneesImages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(
-          "assets/logostraight.png", height: 40.h,
-          // width: MediaQuery
-          //               .of(context)
-          //               .size
-          //               .width * 0.65,
-        ),
-        SizedBox(
-            height: 60.h,
-            child: FittedBox(
-                child: Text(
-                  " 式",
-                  style: TextStyle(fontSize: 40.sp),
-                ))),
-      ],
+    return Padding(
+      padding: EdgeInsets.only(top: 15.h,bottom: 15.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            "assets/logostraight.png", height: 40.h,
+            // width: MediaQuery
+            //               .of(context)
+            //               .size
+            //               .width * 0.65,
+          ),
+          // SizedBox(
+          //     height: 60.h,
+          //     child: FittedBox(
+          //         child: Text(
+          //           " 式",
+          //           style: TextStyle(fontSize: 40.sp),
+          //         ))),
+        ],
+      ),
     );
   }
 }

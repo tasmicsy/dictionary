@@ -101,10 +101,10 @@ class SearchTextField extends StatelessWidget {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              spreadRadius: 1,
-              blurRadius: 1,
-              color: Colors.grey,
-              offset: Offset(1, 1),
+               spreadRadius: 0,
+               blurRadius: 1,
+               color: Colors.grey,
+               offset: Offset(1, 0),
             ),
           ],
         ),
