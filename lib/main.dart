@@ -14,6 +14,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 ///全画面広告
+/////テスト
 AppOpenAd? openAd;
 Future<void> loadInitialAd()async{
   await AppOpenAd.load(
