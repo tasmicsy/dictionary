@@ -270,6 +270,7 @@ class _SecondPageState extends State<SecondPage> {
                    ),
 
                    ///日本語訳
+                  SizedBox(height: MediaQuery.of(context).size.width*0.01),
                    Container(
                      alignment: Alignment.center,
                        width: MediaQuery.of(context).size.width*0.75,
@@ -277,8 +278,20 @@ class _SecondPageState extends State<SecondPage> {
                      child: SelectableText(
                        widget.dictionaryItem.japanese
                      ),
-                   )
-
+                   ),
+                   SizedBox(height: MediaQuery.of(context).size.width*0.01),
+                   ///区切り線
+                   Container(
+                     height: 1,
+                     width: MediaQuery.of(context).size.width*0.7,
+                     color: Colors.grey,
+                   ),
+                   SizedBox(height: MediaQuery.of(context).size.width*0.02),
+                   SizedBox(height: 25.h,child: SelectableText(widget.dictionaryItem.chinese)),
+                   SizedBox(height: 25.h,child: SelectableText("Jyutping: ${widget.dictionaryItem.jyutping}",)),
+                   SizedBox(height: 20.h,child: SelectableText("Yale: ${widget.dictionaryItem.yale}")),
+                   SizedBox(height: 24.h,child: SelectableText("CatOnKnees: ${widget.dictionaryItem.catOnknees}")),
+                   SizedBox(height: MediaQuery.of(context).size.width*0.02),
                  ],
                ),
 
@@ -292,7 +305,7 @@ class _SecondPageState extends State<SecondPage> {
         /// ドロップダウン
         Container(
 
-          height: MediaQuery.of(context).size.height*0.5,
+          height: MediaQuery.of(context).size.height*0.4,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -315,8 +328,8 @@ class _SecondPageState extends State<SecondPage> {
                       children: [
                         SelectableText("【${widget.dictionaryItem.category}】${widget.dictionaryItem.type}"),
                         SizedBox(height: 30.h),
-                        SelectableText("Jyutping: ${widget.dictionaryItem.jyutping}", ),
-                        SelectableText("Yale: ${widget.dictionaryItem.yale}", ),
+                        // SelectableText("Jyutping: ${widget.dictionaryItem.jyutping}", ),
+                        // SelectableText("Yale: ${widget.dictionaryItem.yale}", ),
 
                         if(widget.dictionaryItem.note1 != "")SizedBox(height: 30.h),
                         if(widget.dictionaryItem.note1 != "")SelectableText(widget.dictionaryItem.note1, ),
