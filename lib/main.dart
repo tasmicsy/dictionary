@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:share/share.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:url_launcher/url_launcher.dart';
 ///全画面広告
 /////テスト
@@ -108,10 +109,12 @@ class _MyHomePageState extends State<MyHomePage> {
   InterstitialAd? _interstitialAd;
   AdInterstitial adInterstitial = new AdInterstitial();
 
+
   @override
   void initState() {
     // bgAudio.play(UrlSource("https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
     super.initState();
+
     adInterstitial.createAd();
 
 loadInitialAd();
@@ -138,6 +141,10 @@ loadInitialAd();
     Future(()async{
       await player.play(UrlSource(
           "https://catonknees.com/wp-content/uploads/2022/10/2s.mp3"));
+
+
+
+
       // print("yey")
     }
     );
@@ -147,9 +154,7 @@ loadInitialAd();
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return FutureBuilder<List<DictionaryModel>>(
-        future: DictionaryModel.fetchDictionary(),
-        builder: (context, snapshot) {
+
 // print("\ud84a\udf43");
 // print("𢭃");
           return Scaffold(
@@ -162,217 +167,249 @@ loadInitialAd();
             ),
             backgroundColor: Color.fromRGBO(174, 192, 213, 1),
 
-            body: SingleChildScrollView(
-              child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      CatOnKneesImages(),
+            body:    FutureBuilder<List<DictionaryModel>>(
+          future: DictionaryModel.fetchDictionary(),
+    builder: (context, snapshot) {return SingleChildScrollView(
+    child: Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: <Widget>[
+    CatOnKneesImages(),
 
-                     Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SearchContainer(
-                            height: height*0.3,
-                              width: width, isLeft: true,
-                          child: Column(
-                            children: [
-                              LanguageTitle(kanji: '粵',alphabet: "Cantonese",),
-                              SearchTextField(
-                                  fontSize: 23.sp,
-                                  height: height*0.1,
-                                  onChangedFunc: (text){
-                                    setState((){cantoneseTmp=text;});
-                                  },
-                                  editController: _editController1,
-                                  label: """
+    Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+    SearchContainer(
+    height: height*0.3,
+    width: width, isLeft: true,
+    child: Column(
+    children: [
+    LanguageTitle(kanji: '粵',alphabet: "Cantonese",),
+    SearchTextField(
+    fontSize: 23.sp,
+    height: height*0.1,
+    onChangedFunc: (text){
+    _scrollController.animateTo(
+    0, //最初の要素の指定
+    duration: Duration(milliseconds: 1)/*スクロールの時間*/,
+    curve: Curves.linear/*スクロールの仕方*/,
+    );
+    setState((){cantoneseTmp=text;});
+    },
+    editController: _editController1,
+
+    label: """
 漢字
 Chinese Character
 """),
-                              SearchTextField(
-                                  fontSize: 23.sp,
-                                  height: height*0.1,
-                                  onChangedFunc: (text){
-                                    setState((){jyutpingTmp=text;});
-                                  },
-                                  editController: _editController2,
-                                  label: """
+    SearchTextField(
+    fontSize: 23.sp,
+    height: height*0.1,
+    onChangedFunc: (text){
+    _scrollController.animateTo(
+    0, //最初の要素の指定
+    duration: Duration(milliseconds: 1)/*スクロールの時間*/,
+    curve: Curves.linear/*スクロールの仕方*/,
+    );
+    setState((){jyutpingTmp=text;});
+    },
+    editController: _editController2,
+    label: """
 ピンイン
 Jyutping/Yale
 """),
-                              SearchTextField(
-                                  fontSize: 23.sp,
-                                  height: height*0.1,
-                                  onChangedFunc: (text){
-                                    setState((){catonkneesTmp=text;});
-                                  },
-                                  editController: _editController3,
-                                  label: """
+    SearchTextField(
+    fontSize: 23.sp,
+    height: height*0.1,
+    onChangedFunc: (text){
+    _scrollController.animateTo(
+    0, //最初の要素の指定
+    duration: Duration(milliseconds: 1)/*スクロールの時間*/,
+    curve: Curves.linear/*スクロールの仕方*/,
+    );
+    setState((){catonkneesTmp=text;});
+    },
+    editController: _editController3,
+    label: """
 かな
 CatOnKnees
 """),
-                            ],
-                          )),
+    ],
+    )),
 
-                          Column(
+    Column(
 
-                            children: [
-                              SearchContainer(
-                                height: height*0.2,
-                                width: width, isLeft: false,
-                              child: Column(
-                                children: [
-                                  LanguageTitle(kanji: "日", alphabet: "Japanese"),
-                                  SearchTextField(
-                                      fontSize: 23.sp,
-                                      height: height*0.1,
-                                      onChangedFunc: (text){
-                                        setState((){japaneseTmp=text;});
-                                      },
-                                      editController: _editController4,
-                                      label: """
+    children: [
+    SearchContainer(
+    height: height*0.2,
+    width: width, isLeft: false,
+    child: Column(
+    children: [
+    LanguageTitle(kanji: "日", alphabet: "Japanese"),
+    SearchTextField(
+    fontSize: 23.sp,
+    height: height*0.1,
+    onChangedFunc: (text){
+    _scrollController.animateTo(
+    0, //最初の要素の指定
+    duration: Duration(milliseconds: 1)/*スクロールの時間*/,
+    curve: Curves.linear/*スクロールの仕方*/,
+    );
+    setState((){japaneseTmp=text;});
+    },
+    editController: _editController4,
+    label: """
 日本語
 Japanese
 """),
 
 
+    ],
+    )),
+    Container(
+    height: height*0.1,
+    child: Row(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+    Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+    child: ClearButton(
+    onPressedFunc: (){
+    _scrollController.animateTo(
+    0, //最初の要素の指定
+    duration: Duration(milliseconds: 1)/*スクロールの時間*/,
+    curve: Curves.linear/*スクロールの仕方*/,
+    );
+    setState((){
+    voiceTmp = (voiceTmp==true)? false: true;
+    // print(voiceTmp);
+    });
+    },
+    color: (voiceTmp == false) ? Colors.grey: Color.fromRGBO(186, 206, 179, 1),
+    name: Icon(Icons.volume_up, size:25.h)),
+    ),
+    Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+    child: ClearButton(
+    onPressedFunc: (){
+    _scrollController.animateTo(
+    0, //最初の要素の指定
+    duration: Duration(milliseconds: 1)/*スクロールの時間*/,
+    curve: Curves.linear/*スクロールの仕方*/,
+    );
+    _editController1.clear();
+    _editController2.clear();
+    _editController3.clear();
+    _editController4.clear();
+    setState((){
+    voiceTmp=false;
+    japaneseTmp=null;
+    cantoneseTmp=null;
+    jyutpingTmp=null;
+    catonkneesTmp=null;
 
-                                ],
-                              )),
-                              Container(
-                                height: height*0.1,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                      child: ClearButton(
-                                          onPressedFunc: (){
-                                            setState((){
-                                              voiceTmp = (voiceTmp==true)? false: true;
-                                              // print(voiceTmp);
-                                            });
-                                          },
-                                          color: (voiceTmp == false) ? Colors.grey: Color.fromRGBO(186, 206, 179, 1),
-                                          name: Icon(Icons.volume_up, size:25.h)),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                      child: ClearButton(
-                                          onPressedFunc: (){
-                                            _editController1.clear();
-                                            _editController2.clear();
-                                            _editController3.clear();
-                                            _editController4.clear();
-                                            setState((){
-                                              voiceTmp=false;
-                                              japaneseTmp=null;
-                                              cantoneseTmp=null;
-                                              jyutpingTmp=null;
-                                              catonkneesTmp=null;
 
+    });
+    },
+    color: Colors.blue.shade100,
+    name: Icon(Icons.delete, size:25.h)),
+    ),
 
-                                            });
-                                          },
-                                          color: Colors.blue.shade100,
-                                          name: Icon(Icons.delete, size:25.h)),
-                                    ),
-
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                      //タイトル
-                      // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   child: TextField(
-                      //     decoration: InputDecoration(
-                      //         labelStyle: TextStyle(
-                      //           color: Colors.black54,
-                      //           fontSize: 13.h,
-                      //         ),
-                      //         // focusColor: Colors.black54,
-                      //
-                      //         fillColor: Colors.white,
-                      //         filled: true,
-                      //
-                      //         labelText: "検索する",
-                      //
-                      //     ),
-                      //   ),
-                      // ),
-                      // TextButton(
-                      //     style: ButtonStyle(
-                      //         // backgroundColor: MaterialStateProperty.all(Colors.yellow),
-                      //         alignment: Alignment.topCenter,
-                      //         overlayColor: MaterialStateProperty.all(
-                      //           Colors.white,
-                      //         )),
-                      //     onPressed: () async {
-                      //       bgAudio.play(UrlSource(
-                      //           "https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
-                      //       await Future.delayed(const Duration(milliseconds: 800));
-                      //       bgAudio1.play(UrlSource(
-                      //           "https://catonknees.com/wp-content/uploads/2022/06/117.mp3"));
-                      //       await Future.delayed(const Duration(milliseconds: 800));
-                      //       bgAudio2.play(UrlSource(
-                      //           "https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
-                      //     },
-                      //     child: const Icon(Icons.volume_up, color: Colors.black87, size: 20)),
-                      snapshot.hasData
-                          ? Container(
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height * 0.43,
-                          child: DictionaryList(
-                              scrollController: _scrollController,
-                              context: context,
-                              dictionaryList: DictionaryModel.searchDictionary(
-                                  snapshot.data!,
-                                  cantoneseTmp,
-                                  jyutpingTmp,
-                                  catonkneesTmp,
-                                  japaneseTmp,
-                                   voiceTmp)))
-                          : SizedBox(
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height * 0.43,
-                          child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  CircularProgressIndicator(
-                                      color:Colors.brown
-                                  ),
-                                  Text("""
+    ],
+    ),
+    )
+    ],
+    ),
+    ],
+    ),
+    //タイトル
+    // Padding(
+    //   padding: const EdgeInsets.all(8.0),
+    //   child: TextField(
+    //     decoration: InputDecoration(
+    //         labelStyle: TextStyle(
+    //           color: Colors.black54,
+    //           fontSize: 13.h,
+    //         ),
+    //         // focusColor: Colors.black54,
+    //
+    //         fillColor: Colors.white,
+    //         filled: true,
+    //
+    //         labelText: "検索する",
+    //
+    //     ),
+    //   ),
+    // ),
+    // TextButton(
+    //     style: ButtonStyle(
+    //         // backgroundColor: MaterialStateProperty.all(Colors.yellow),
+    //         alignment: Alignment.topCenter,
+    //         overlayColor: MaterialStateProperty.all(
+    //           Colors.white,
+    //         )),
+    //     onPressed: () async {
+    //       bgAudio.play(UrlSource(
+    //           "https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
+    //       await Future.delayed(const Duration(milliseconds: 800));
+    //       bgAudio1.play(UrlSource(
+    //           "https://catonknees.com/wp-content/uploads/2022/06/117.mp3"));
+    //       await Future.delayed(const Duration(milliseconds: 800));
+    //       bgAudio2.play(UrlSource(
+    //           "https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
+    //     },
+    //     child: const Icon(Icons.volume_up, color: Colors.black87, size: 20)),
+    snapshot.hasData
+    ? Container(
+    height: MediaQuery
+        .of(context)
+        .size
+        .height * 0.43,
+    child: DictionaryList(
+    scrollController: _scrollController,
+    context: context,
+    dictionaryList: DictionaryModel.searchDictionary(
+    snapshot.data!,
+    cantoneseTmp,
+    jyutpingTmp,
+    catonkneesTmp,
+    japaneseTmp,
+    voiceTmp)))
+        : SizedBox(
+    height: MediaQuery
+        .of(context)
+        .size
+        .height * 0.43,
+    child: Center(
+    child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+    CircularProgressIndicator(
+    color:Colors.brown
+    ),
+    Text("""
           起動時/ネット接続時は読み込みに時間がかかります。
           しばらくお待ちください。。☕️
           """,textAlign: TextAlign.center, )
-                                ],
-                              )
-                          )),
-                      (_isBannerAdReady)?SizedBox(
-                        width: _bannerAd.size.width.toDouble(),
-                        height: _bannerAd.size.height.toDouble(),
-                        child: AdWidget(ad: _bannerAd),
-                      ):
-                      SizedBox(width: 30, height: 47),
-                    ],
-                  ),
-            ),
+    ],
+    )
+    )),
+    (_isBannerAdReady)?SizedBox(
+    width: _bannerAd.size.width.toDouble(),
+    height: _bannerAd.size.height.toDouble(),
+    child: AdWidget(ad: _bannerAd),
+    ):
+    SizedBox(width: 30, height: 47),
+    ],
+    ),
+    );
 
-
+    })
           // This trailing comma makes auto-formatting nicer for build methods.
           );
-        }
 
-    );
+
+
   }
 }
 
