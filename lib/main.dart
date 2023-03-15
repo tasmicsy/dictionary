@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:share/share.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:url_launcher/url_launcher.dart';
 ///全画面広告
 /////テスト
@@ -108,10 +109,12 @@ class _MyHomePageState extends State<MyHomePage> {
   InterstitialAd? _interstitialAd;
   AdInterstitial adInterstitial = new AdInterstitial();
 
+
   @override
   void initState() {
     // bgAudio.play(UrlSource("https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
     super.initState();
+
     adInterstitial.createAd();
 
 loadInitialAd();
@@ -138,6 +141,10 @@ loadInitialAd();
     Future(()async{
       await player.play(UrlSource(
           "https://catonknees.com/wp-content/uploads/2022/10/2s.mp3"));
+
+
+
+
       // print("yey")
     }
     );

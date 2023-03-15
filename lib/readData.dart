@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:sqflite/sqflite.dart';
 class DictionaryModel {
   String no;
 
@@ -96,7 +97,7 @@ class DictionaryModel {
     //print('herehere');
     final response = await http.get(
         Uri.parse(
-            'https://script.googleusercontent.com/macros/echo?user_content_key=kjR3mENTYcC7O8WOc3YIuK72S9jfugHvwUhaTMRTBg7w4Vpx3VnTR0Lc72NsiaQNaveR1oC4JakdaEU5G24aFzCc0W5UDi_9m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnHqZvJtAtxgCpEgE47R4BjeIGr0FPAlwVbL-O8v6Wr754hMTs8Cy1RZhuPR_7cNjlYRt53ZGJbv42_JAvz2r6nJjiEkZjVQDvw&lib=MyIec3pxoXRm5dsFNLuw6vFe2EpWJ2gRo'
+            'https://script.google.com/macros/s/AKfycbzrwzq1D_n8GNDzG5HYjVomhV0cMj5CvSzy-_a9Idv9KW81qinLOsd33ju6O9rUxaZzLg/exec'
 
         ));
     if (response.statusCode == 200) {
@@ -138,6 +139,8 @@ class DictionaryModel {
     // }
     return dictionaryListTemp;
   }
+
+  ///sqlite
 
 
 }
