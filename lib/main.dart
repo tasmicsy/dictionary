@@ -100,12 +100,12 @@ class _MyHomePageState extends State<MyHomePage> {
   final _editController2 = TextEditingController();
   final _editController3 = TextEditingController();
   final _editController4 = TextEditingController();
-  var _scrollController = ScrollController();
+  final _scrollController = ScrollController();
   String? cantoneseTmp;
   String? jyutpingTmp;
   String? catonkneesTmp;
   String? japaneseTmp;
-  bool voiceTmp=false;
+  bool? voiceTmp;
   InterstitialAd? _interstitialAd;
   AdInterstitial adInterstitial = new AdInterstitial();
 
@@ -194,7 +194,12 @@ loadInitialAd();
     duration: Duration(milliseconds: 1)/*スクロールの時間*/,
     curve: Curves.linear/*スクロールの仕方*/,
     );
-    setState((){cantoneseTmp=text;});
+    setState((){
+      cantoneseTmp=text;
+      japaneseTmp=japaneseTmp;
+      jyutpingTmp=jyutpingTmp;
+      cantoneseTmp=cantoneseTmp;
+    });
     },
     editController: _editController1,
 
@@ -211,7 +216,12 @@ Chinese Character
     duration: Duration(milliseconds: 1)/*スクロールの時間*/,
     curve: Curves.linear/*スクロールの仕方*/,
     );
-    setState((){jyutpingTmp=text;});
+    setState((){
+      jyutpingTmp=text;
+      japaneseTmp=japaneseTmp;
+      catonkneesTmp=catonkneesTmp;
+      cantoneseTmp=cantoneseTmp;
+    });
     },
     editController: _editController2,
     label: """
@@ -227,7 +237,11 @@ Jyutping/Yale
     duration: Duration(milliseconds: 1)/*スクロールの時間*/,
     curve: Curves.linear/*スクロールの仕方*/,
     );
-    setState((){catonkneesTmp=text;});
+    setState((){
+      japaneseTmp=japaneseTmp;
+      jyutpingTmp=jyutpingTmp;
+      cantoneseTmp=cantoneseTmp;
+      catonkneesTmp=text;});
     },
     editController: _editController3,
     label: """
@@ -255,7 +269,13 @@ CatOnKnees
     duration: Duration(milliseconds: 1)/*スクロールの時間*/,
     curve: Curves.linear/*スクロールの仕方*/,
     );
-    setState((){japaneseTmp=text;});
+    setState((){
+      japaneseTmp=text;
+      catonkneesTmp=catonkneesTmp;
+      jyutpingTmp=jyutpingTmp;
+      cantoneseTmp=cantoneseTmp;
+
+    });
     },
     editController: _editController4,
     label: """
@@ -281,6 +301,10 @@ Japanese
     curve: Curves.linear/*スクロールの仕方*/,
     );
     setState((){
+      japaneseTmp=japaneseTmp;
+      catonkneesTmp=catonkneesTmp;
+      jyutpingTmp=jyutpingTmp;
+      cantoneseTmp=cantoneseTmp;
     voiceTmp = (voiceTmp==true)? false: true;
     // print(voiceTmp);
     });
@@ -302,7 +326,7 @@ Japanese
     _editController3.clear();
     _editController4.clear();
     setState((){
-    voiceTmp=false;
+    voiceTmp=null;
     japaneseTmp=null;
     cantoneseTmp=null;
     jyutpingTmp=null;
@@ -374,7 +398,7 @@ Japanese
     jyutpingTmp,
     catonkneesTmp,
     japaneseTmp,
-    voiceTmp)))
+    voiceTmp??false)))
         : SizedBox(
     height: MediaQuery
         .of(context)
