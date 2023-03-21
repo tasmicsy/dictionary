@@ -108,6 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool? voiceTmp;
   InterstitialAd? _interstitialAd;
   AdInterstitial adInterstitial = new AdInterstitial();
+  List<DictionaryModel>? dicTest;
 
 
   @override
@@ -142,7 +143,7 @@ loadInitialAd();
       await player.play(UrlSource(
           "https://catonknees.com/wp-content/uploads/2022/10/2s.mp3"));
 
-
+     dicTest = await DictionaryModel.fetchDictionary();
 
 
       // print("yey")
@@ -167,9 +168,7 @@ loadInitialAd();
             ),
             backgroundColor: Color.fromRGBO(174, 192, 213, 1),
 
-            body:    FutureBuilder<List<DictionaryModel>>(
-          future: DictionaryModel.fetchDictionary(),
-    builder: (context, snapshot) {return SingleChildScrollView(
+            body:     SingleChildScrollView(
     child: Column(
     mainAxisAlignment: MainAxisAlignment.start,
     children: <Widget>[
@@ -189,17 +188,19 @@ loadInitialAd();
     fontSize: 23.sp,
     height: height*0.1,
     onChangedFunc: (text){
-    _scrollController.animateTo(
-    0, //最初の要素の指定
-    duration: Duration(milliseconds: 1)/*スクロールの時間*/,
-    curve: Curves.linear/*スクロールの仕方*/,
-    );
+
     setState((){
       cantoneseTmp=text;
       japaneseTmp=japaneseTmp;
       jyutpingTmp=jyutpingTmp;
       cantoneseTmp=cantoneseTmp;
     });
+    _scrollController.animateTo(
+      0, //最初の要素の指定
+      duration: Duration(milliseconds: 2)/*スクロールの時間*/,
+      curve: Curves.linear/*スクロールの仕方*/,
+    );
+
     },
     editController: _editController1,
 
@@ -211,17 +212,19 @@ Chinese Character
     fontSize: 23.sp,
     height: height*0.1,
     onChangedFunc: (text){
-    _scrollController.animateTo(
-    0, //最初の要素の指定
-    duration: Duration(milliseconds: 1)/*スクロールの時間*/,
-    curve: Curves.linear/*スクロールの仕方*/,
-    );
+
     setState((){
       jyutpingTmp=text;
       japaneseTmp=japaneseTmp;
       catonkneesTmp=catonkneesTmp;
       cantoneseTmp=cantoneseTmp;
     });
+    _scrollController.animateTo(
+      0, //最初の要素の指定
+      duration: Duration(milliseconds: 2)/*スクロールの時間*/,
+      curve: Curves.linear/*スクロールの仕方*/,
+    );
+
     },
     editController: _editController2,
     label: """
@@ -232,17 +235,19 @@ Jyutping/Yale
     fontSize: 23.sp,
     height: height*0.1,
     onChangedFunc: (text){
-    _scrollController.animateTo(
-    0, //最初の要素の指定
-    duration: Duration(milliseconds: 1)/*スクロールの時間*/,
-    curve: Curves.linear/*スクロールの仕方*/,
-    );
+
     setState((){
       japaneseTmp=japaneseTmp;
       jyutpingTmp=jyutpingTmp;
       cantoneseTmp=cantoneseTmp;
       catonkneesTmp=text;});
+    _scrollController.animateTo(
+      0, //最初の要素の指定
+      duration: Duration(milliseconds: 2)/*スクロールの時間*/,
+      curve: Curves.linear/*スクロールの仕方*/,
+    );
     },
+
     editController: _editController3,
     label: """
 かな
@@ -264,11 +269,7 @@ CatOnKnees
     fontSize: 23.sp,
     height: height*0.1,
     onChangedFunc: (text){
-    _scrollController.animateTo(
-    0, //最初の要素の指定
-    duration: Duration(milliseconds: 1)/*スクロールの時間*/,
-    curve: Curves.linear/*スクロールの仕方*/,
-    );
+
     setState((){
       japaneseTmp=text;
       catonkneesTmp=catonkneesTmp;
@@ -276,6 +277,11 @@ CatOnKnees
       cantoneseTmp=cantoneseTmp;
 
     });
+    _scrollController.animateTo(
+      0, //最初の要素の指定
+      duration: Duration(milliseconds: 1)/*スクロールの時間*/,
+      curve: Curves.linear/*スクロールの仕方*/,
+    );
     },
     editController: _editController4,
     label: """
@@ -295,19 +301,20 @@ Japanese
     padding: const EdgeInsets.symmetric(horizontal: 8.0),
     child: ClearButton(
     onPressedFunc: (){
-    _scrollController.animateTo(
-    0, //最初の要素の指定
-    duration: Duration(milliseconds: 1)/*スクロールの時間*/,
-    curve: Curves.linear/*スクロールの仕方*/,
-    );
+
     setState((){
       japaneseTmp=japaneseTmp;
       catonkneesTmp=catonkneesTmp;
       jyutpingTmp=jyutpingTmp;
       cantoneseTmp=cantoneseTmp;
     voiceTmp = (voiceTmp==true)? false: true;
-    // print(voiceTmp);
+     print(voiceTmp);
     });
+    _scrollController.animateTo(
+      0, //最初の要素の指定
+      duration: Duration(milliseconds: 1)/*スクロールの時間*/,
+      curve: Curves.linear/*スクロールの仕方*/,
+    );
     },
     color: (voiceTmp == false) ? Colors.grey: Color.fromRGBO(186, 206, 179, 1),
     name: Icon(Icons.volume_up, size:25.h)),
@@ -326,7 +333,7 @@ Japanese
     _editController3.clear();
     _editController4.clear();
     setState((){
-    voiceTmp=null;
+    voiceTmp=false;
     japaneseTmp=null;
     cantoneseTmp=null;
     jyutpingTmp=null;
@@ -383,7 +390,7 @@ Japanese
     //           "https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
     //     },
     //     child: const Icon(Icons.volume_up, color: Colors.black87, size: 20)),
-    snapshot.hasData
+    dicTest!=null
     ? Container(
     height: MediaQuery
         .of(context)
@@ -393,7 +400,7 @@ Japanese
     scrollController: _scrollController,
     context: context,
     dictionaryList: DictionaryModel.searchDictionary(
-    snapshot.data!,
+    dicTest!,
     cantoneseTmp,
     jyutpingTmp,
     catonkneesTmp,
@@ -426,9 +433,9 @@ Japanese
     SizedBox(width: 30, height: 47),
     ],
     ),
-    );
+    )
 
-    })
+
           // This trailing comma makes auto-formatting nicer for build methods.
           );
 
