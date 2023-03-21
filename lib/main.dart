@@ -168,9 +168,7 @@ loadInitialAd();
             ),
             backgroundColor: Color.fromRGBO(174, 192, 213, 1),
 
-            body:    FutureBuilder<List<DictionaryModel>>(
-          future: DictionaryModel.fetchDictionary(),
-    builder: (context, snapshot) {return SingleChildScrollView(
+            body:     SingleChildScrollView(
     child: Column(
     mainAxisAlignment: MainAxisAlignment.start,
     children: <Widget>[
@@ -392,7 +390,7 @@ Japanese
     //           "https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
     //     },
     //     child: const Icon(Icons.volume_up, color: Colors.black87, size: 20)),
-    snapshot.hasData
+    dicTest!=null
     ? Container(
     height: MediaQuery
         .of(context)
@@ -402,7 +400,7 @@ Japanese
     scrollController: _scrollController,
     context: context,
     dictionaryList: DictionaryModel.searchDictionary(
-    snapshot.data!,
+    dicTest!,
     cantoneseTmp,
     jyutpingTmp,
     catonkneesTmp,
@@ -435,9 +433,9 @@ Japanese
     SizedBox(width: 30, height: 47),
     ],
     ),
-    );
+    )
 
-    })
+
           // This trailing comma makes auto-formatting nicer for build methods.
           );
 
