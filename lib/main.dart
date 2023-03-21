@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String? jyutpingTmp;
   String? catonkneesTmp;
   String? japaneseTmp;
-  bool? voiceTmp;
+  bool voiceTmp=false;
   InterstitialAd? _interstitialAd;
   AdInterstitial adInterstitial = new AdInterstitial();
   List<DictionaryModel>? dicTest;
@@ -144,12 +144,15 @@ loadInitialAd();
           "https://catonknees.com/wp-content/uploads/2022/10/2s.mp3"));
 
      dicTest = await DictionaryModel.fetchDictionary();
-
+     setState(() {
+       dicTest=dicTest;
+     });
 
       // print("yey")
     }
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
