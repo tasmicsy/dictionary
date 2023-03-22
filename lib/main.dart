@@ -17,13 +17,13 @@ import 'package:url_launcher/url_launcher.dart';
 ///全画面広告
 /////テスト
 AppOpenAd? openAd;
-Future<void> loadInitialAd()async{
-  await AppOpenAd.load(
+void loadInitialAd(){
+  AppOpenAd.load(
       adUnitId: AdHelper.displayAdUnitId,
       request: const AdRequest(),
       adLoadCallback: AppOpenAdLoadCallback(
           onAdLoaded: (ad){
-            print("Ad is loadedddd");
+
             openAd = ad;
             openAd!.show();
           },
@@ -33,6 +33,8 @@ Future<void> loadInitialAd()async{
       ), orientation: AppOpenAd.orientationPortrait
   );
 }
+
+
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -116,9 +118,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // bgAudio.play(UrlSource("https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
     super.initState();
 
-    adInterstitial.createAd();
+    // adInterstitial.createAd();
 
-loadInitialAd();
+// loadInitialAd();
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
