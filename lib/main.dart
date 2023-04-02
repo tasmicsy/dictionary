@@ -118,9 +118,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // bgAudio.play(UrlSource("https://catonknees.com/wp-content/uploads/2022/05/2749.mp3"));
     super.initState();
 
-    // adInterstitial.createAd();
+    adInterstitial.createAd();
 
-// loadInitialAd();
+ loadInitialAd();
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
