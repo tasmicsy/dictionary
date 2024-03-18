@@ -45,15 +45,15 @@ dependencies:
   cupertino_icons: ^1.0.2
   just_audio: ^0.9.30
   url_launcher: ^6.1.6
-  audioplayers: ^1.1.1
+  audioplayers: ^5.2.1
   flutter_screenutil: ^5.6.0
   share: ^2.0.4
   firebase_core: ^2.1.1
   firebase_auth: ^4.1.0
   flutter_easyloading: ^3.0.5
-  google_mobile_ads: ^2.3.0
+  google_mobile_ads: ^4.0.0
   app_tracking_transparency: ^2.0.3
-  flutter_launcher_icons: ^0.11.0
+  flutter_launcher_icons: ^0.13.1
   sqflite: ^2.2.5
   path_provider: ^2.0.13
 
@@ -66,7 +66,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
