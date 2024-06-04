@@ -97,7 +97,7 @@ class DictionaryModel {
     //print('herehere');
     final response = await http.get(
         Uri.parse(
-            'https://script.google.com/macros/s/AKfycbzrwzq1D_n8GNDzG5HYjVomhV0cMj5CvSzy-_a9Idv9KW81qinLOsd33ju6O9rUxaZzLg/exec'
+            'https://script.google.com/macros/s/AKfycbwSX0Mcte9HOPkCxW4Vq6VvV3cI0gxqJAr24RGXrh2fxy_MH4cKVSEkSeB8hxA548669g/exec'
 
         ));
     if (response.statusCode == 200) {

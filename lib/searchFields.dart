@@ -16,6 +16,7 @@ class SearchContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       child: child,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black45, width: 0.2),
@@ -36,7 +37,7 @@ class SearchContainer extends StatelessWidget {
         color: Color.fromRGBO(234, 240, 247, 1),
       ),
       height: height,
-      width: width*0.48,
+      width: width*0.47,
     );
   }
 }
@@ -110,7 +111,7 @@ class SearchTextField extends StatelessWidget {
         ),
         child: TextField(
           style: TextStyle(
-              fontSize: fontSize.sp),
+              fontSize: 18.sp),
           cursorColor: Colors.brown,
           textAlignVertical: TextAlignVertical.center,
           controller: editController,

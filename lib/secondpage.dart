@@ -84,12 +84,12 @@ class _SecondPageState extends State<SecondPage> {
               width: MediaQuery.of(context).size.width*0.7,
               height: MediaQuery.of(context).size.height *0.06,
               child: ListView.builder(
-                  itemCount: widget.dictionaryItem.jyutping.split(' ').length,
+                  itemCount: widget.dictionaryItem.jyutping.split(' ').length-1,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
 
                     return Container(
-                      width:  MediaQuery.of(context).size.width*0.7/widget.dictionaryItem.jyutping.split(' ').length,
+                      width:  MediaQuery.of(context).size.width*0.7/(widget.dictionaryItem.jyutping.split(' ').length-1),
                       alignment: Alignment.center,
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
