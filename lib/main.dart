@@ -66,7 +66,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    appOpenAdManager.loadAd();
+    ///広告削除中
+    // appOpenAdManager.loadAd();
     // Can't show a dialog in initState, delaying initialization
     WidgetsBinding.instance?.addPostFrameCallback((_) => initPlugin());
   }
@@ -427,13 +428,15 @@ Japanese
                           )
                         ],
                       ))),
-              (_isBannerAdReady)
-                  ? SizedBox(
-                      width: _bannerAd.size.width.toDouble(),
-                      height: _bannerAd.size.height.toDouble(),
-                      child: AdWidget(ad: _bannerAd),
-                    )
-                  : SizedBox(width: 30, height: 47),
+
+              ///広告削除中
+              // (_isBannerAdReady)
+              //     ? SizedBox(
+              //         width: _bannerAd.size.width.toDouble(),
+              //         height: _bannerAd.size.height.toDouble(),
+              //         child: AdWidget(ad: _bannerAd),
+              //       )
+              //     : SizedBox(width: 30, height: 47),
             ],
           ),
         )
